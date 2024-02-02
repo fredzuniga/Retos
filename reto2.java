@@ -45,6 +45,7 @@ public class reto2 {
         //variables de registro de administrador y operaciones totales
         private String admin_usuario, admin_password;
         private int num_compras = 0;
+        private int num_operaciones = 0;
         //egresos e ingresos por compras y ventas
         private double egresos_compras = 0;
         private double ingresos_ventas = 0;
@@ -86,26 +87,37 @@ public class reto2 {
                 switch(opcion){
                     case 'A' ->{
                         //variables exclusivas de esta opcion
-                        int compra;
+                        int num_compras;
                         double precio;
                         double monto;
-                        //seleccion de volver o no al menu principal
-                        char menu;
                         System.out.println("Bienvenido a la seccion de compra de cajas."
                                 + "\nEscribe las cajas que vas a comprar: ");
-                        compra = sc.nextInt();
+                        num_compras = sc.nextInt();
                         System.out.println("Escribe el precio de cada caja: ");
                         precio = sc.nextFloat();
-                        monto = precio * compra;
-                        System.out.println("La compra realizada por " + compra + " cajas al costo $" + precio + " es igual a: $" + monto);
+                        monto = precio * num_compras;
+                        System.out.println("La compra realizada por " + num_compras + " cajas al costo: $" + precio + " es igual a: $" + monto);
                         //la variable de compras totales aumenta cada vez que esta operacion se realice
                         num_compras ++;
+                        //la variable num_operaciones funciona para guardar todas las operaciones realizadas durante el programa
+                        num_operaciones ++;
                         //los egresos se guardan y se restan por cada compra realizada
                         egresos_compras = egresos_compras - monto;
-                    
                     }
                     case 'B' ->{
-                        System.out.println("Bienvenido a la seccion de venta de cajas");
+                        int num_ventas;
+                        double precio_ventas;
+                        double monto_ventas;
+                        System.out.println("Bienvenido a la seccion de venta de cajas \nEscribe las cajas que vas a vender: ");
+                        num_ventas = sc.nextInt();
+                        System.out.println("Escribe el precio de cada caja: ");
+                        precio_ventas = sc.nextFloat();
+                        monto_ventas = precio_ventas * num_ventas;
+                        System.out.println("La venta realizada por " + num_ventas + " cajas al costo: $" + precio_ventas + " es igual a: $" + monto_ventas);
+                        num_ventas ++;
+                        num_operaciones ++;
+                        ingresos_ventas = ingresos_ventas + monto_ventas;
+                        
                     }
                     case 'S' ->{
                         break;
@@ -114,8 +126,8 @@ public class reto2 {
                 }
             }
                 //codigo de salida
-            
+                System.out.println("Reporte de control:");
+
                 }
     }
 }
-//final del programa
