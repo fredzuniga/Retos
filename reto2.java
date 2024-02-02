@@ -1,5 +1,4 @@
 //Reto 2    **calificaciones de alumnos**   Alan Bauza
-//package reto2;
 import java.io.*;
 import java.util.Scanner;
 public class reto2 {
@@ -119,3 +118,4 @@ public class reto2 {
                 }
     }
 }
+//final del programa
