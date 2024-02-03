@@ -110,6 +110,7 @@ public class reto2 {
                         monto_total = monto_total - monto;
                     }
                     case 'B' ->{
+                        //variables exclusivas de esta operacion
                         int num_cajas;
                         double precio_ventas;
                         double monto_ventas;
@@ -122,6 +123,7 @@ public class reto2 {
                         + "\n-----------------------------");
                         num_ventas++;
                         num_operaciones++;
+                        //los ingresos se guardan y se suman por cada venta realizada
                         ingresos_ventas = ingresos_ventas + monto_ventas;
                         monto_total = monto_total + monto_ventas;
                     }
