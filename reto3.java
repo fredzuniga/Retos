@@ -59,5 +59,6 @@ public class reto3 {
             }
             default -> System.out.println("Por favor elija una opcion disponible");
         }
+        sc.close();
     }
 }
