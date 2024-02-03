@@ -6,4 +6,4 @@ En este repositorio voy a guardar todos mis retos de Programación Orientada a O
 ## Authors
 
 - Alan Bauza (https://github.com/alanbalfonso)
-  LinkedIn: www.linkedin.com/in/alan-bauza-alfonso-b7273828a
+- LinkedIn: www.linkedin.com/in/alan-bauza-alfonso-b7273828a
