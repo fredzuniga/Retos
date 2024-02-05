@@ -24,7 +24,7 @@ public class reto3 {
                 while(opcion_diccionario != 'S'){
                     switch (opcion_diccionario) {
                         case 'A' ->{
-    
+                            
                         }
                         case 'B' ->{
     
