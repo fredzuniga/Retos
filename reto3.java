@@ -25,11 +25,17 @@ public class reto3 {
                     switch (opcion_diccionario) {
                         case 'A' ->{
                             //String que tiene un array en el que se guardan los datos del diccionario
-                            String [] palabras;
+                            String [] palabras = {"lapiz", "microfono", "laptop", "servilleta", "arbol", "plato",
+                            "agua", "cable", "tijeras", "libreta"};
+                            //definiciones de cada palabra
+                            String [] significados = {"Utensilio para escribir o dibujar formado por un cilindro o prisma de madera con una barra de grafito en su interior.",
+                            "Aparato que transforma las ondas sonoras en corrientes eléctricas para su amplificacion.",
+                            "Computadora portatil de peso y tamanio ligero.", "Pieza de tela o papel que usa cada comensal para limpiarse los labios y las manos.",
+                            "Planta de tallo lenioso y elevado, que se ramifica a cierta altura del suelo.", "Pieza de la vajilla para comer.",
+                            "Liquido transparente, incoloro, inodoro e insipido en estado puro.", "Cordon formado con varios conductores aislados unos de otros y protegido"
+                            +" generalmente por una envoltura flexible y resistente.","Instrumento compuesto de dos hojas de acero, a manera de cuchillas de un solo filo.", 
+                            "Conjunto de hojas de papel, impresas o en blanco unidas que forman un libro delgado."};
                             System.out.println("-----ENLISTAR PALABRAS-----");
-                            System.out.println("Introduce la palabra que quieres enlistar: ");
-                            //readLine();
-                            sc.next();
                             
                         }
                         case 'B' ->{
