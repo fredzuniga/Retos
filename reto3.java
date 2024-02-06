@@ -24,6 +24,12 @@ public class reto3 {
                 while(opcion_diccionario != 'S'){
                     switch (opcion_diccionario) {
                         case 'A' ->{
+                            //String que tiene un array en el que se guardan los datos del diccionario
+                            String [] palabras;
+                            System.out.println("-----ENLISTAR PALABRAS-----");
+                            System.out.println("Introduce la palabra que quieres enlistar: ");
+                            //readLine();
+                            sc.next();
                             
                         }
                         case 'B' ->{
@@ -56,6 +62,8 @@ public class reto3 {
                     opcion_columnas = sc.nextInt();
                 }
                 while(opcion_filas != opcion_columnas);
+                //Math.random()* 10 da valores de 0.0 a 10.0, excluido el 10.0
+
             }
             default -> System.out.println("Por favor elija una opcion disponible");
         }

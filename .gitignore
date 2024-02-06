@@ -3,3 +3,6 @@
 
 # Notas particulares
 *.txt
+
+# Ejemplos de clases
+ejemplo_vector.java
