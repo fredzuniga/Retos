@@ -29,36 +29,41 @@ public class reto3 {
                 char opcion_diccionario = 'x';
                 System.out.println("--------DICCIONARIO--------" 
                 + "\nBienvenido al diccionario, escoge una opcion: ");
-                //objeto para enlistar palabras
-                reto3 r = new reto3();  //acceder a Diccionario
-                Diccionario lista = r.new Diccionario(palabras, significados);
+                //objeto para mandar a llamar otro objeto
+                reto3 r = new reto3();  //acceder a clase Diccionario
+                Diccionario lista = r.new Diccionario(palabras, significados);  //objeto tipo Diccionario mandado a llamar con objeto tipo reto3
                 while(opcion_diccionario != 'S'){
                     System.out.println("Escoge una opcion: "
                     +"\nA. Listar palabras del diccionario."
                     +"\nB. Buscar palabra en el diccionario."
-                    +"\nC. Detalle del diccionario."
+                    +"\nC. Detalles del diccionario."
                     +"\nS. Finalizar programa.");
                     opcion_diccionario = sc.next().charAt(0);
                     switch (opcion_diccionario) {
                         case 'A' ->{
                             System.out.println("-----ENLISTAR PALABRAS-----");
-                            //mandar a llamar la clase
+                            //lista de palabras
                             lista.enlistar_palabras();
-                            System.out.println("-------------------");
                         }
                         //buscar una palabra del diccionario
                         case 'B' ->{
-                            String palabra_buscada;
                             System.out.println("-----BUSCAR PALABRA DENTRO DEL DICCIONARIO-----");
+                            String palabra;
                             //ejecucion
                             lista.enlistar_palabras();
-                            System.out.println("Escribe la palabra que quieres buscar en el diccionario: ");
-                            palabra_buscada = sc.next();
-                            System.out.println("Palabra: " + palabra_buscada);
-                            
+                            System.out.println("Escribe la palabra a buscar: ");
+                            palabra = sc.next();
+                            System.out.println(lista.buscar_palabras(palabra));
                         }
                         case 'C' ->{
-                            
+                            //Detalles del diccionario
+                            System.out.println("-----DETALLES-----");
+                            System.out.println("Nombre: Diccionario Alan Bauza version 1.3");
+                            System.out.println("Palabras dentro del diccionario: " + palabras.length);
+                            for(int i = 0; i < palabras.length; i++){
+                                //imprimir cada palabra y sus caracteres y los caracteres de los significados
+                                System.out.println("Palabra: " + palabras[i] + " Numero de caracteres: " + palabras[i].length() + ". Numero de caracteres del significado: " + significados[i].length());
+                            }
                         }
                         case 'S' ->{
                             break;  //rompe el while
@@ -92,17 +97,39 @@ public class reto3 {
         sc.close();
     }
     public class Diccionario{
+        Scanner sc = new Scanner(System.in);
         private String[] palabras = new String[]{};
         private String[] significados = new String[]{};
 
-        public Diccionario(String[] words, String[] meanings){ // ! Class constructor
-            this.palabras = words;
-            this.significados = meanings;
+        //constructor
+        public Diccionario(String[] palabras, String[] definiciones){  
+            this.palabras = palabras;
+            this.significados = definiciones;
         }
 
         public void enlistar_palabras(){
             for(int i = 0; i < palabras.length; i++){
                 System.out.println("* " + palabras[i]);
+            }
+            System.out.println("-------------------");
+        }
+
+        //buscar y comprobar el index de la palabra para confirmar coincidencia con su significado
+        public String buscar_palabras(String palabra){
+            String palabra_buscada = "";
+            for(int i = 0; i < this.palabras.length; i++){
+                /*si la palabra escrita es igual a alguna palabra dentro del vector
+                entonces imprimir su definicion en el mismo index*/
+                if(this.palabras[i].equals(palabra)){
+                    palabra_buscada = palabra + ": \n" + this.significados[i];
+                    break;
+                }
+            }
+            if(palabra_buscada != ""){
+                return palabra_buscada;
+            }
+            else{
+                return "La palabra no esta registrada en el diccionario";
             }
         }
     }
