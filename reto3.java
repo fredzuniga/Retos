@@ -76,21 +76,7 @@ public class reto3 {
 
             }
             case 2->{
-                //programa de matriz
-                int opcion_filas;
-                int opcion_columnas;
-
-                System.out.println("-----CONTADOR DE NUMEROS PARES E IMPARES-----");
-                do{
-                    System.out.println("------Por favor imprima valores iguales de filas y columnas para continuar------");
-                    System.out.println("Indica la cantidad de filas: ");
-                    opcion_filas = sc.nextInt();
-                    System.out.println("Indica la cantidad de columnas: ");
-                    opcion_columnas = sc.nextInt();
-                }
-                while(opcion_filas != opcion_columnas);
-                //Math.random()* 10 da valores de 0.0 a 10.0, excluido el 10.0
-
+                
             }
             default -> System.out.println("Por favor elija una opcion disponible");
         }
@@ -131,6 +117,26 @@ public class reto3 {
             else{
                 return "La palabra no esta registrada en el diccionario";
             }
+        }
+    }
+    public class Matriz{
+        Scanner sc = new Scanner(System.in);
+        public void conteo_matriz(){
+        //programa de matriz
+        int opcion_filas;
+        int opcion_columnas;
+
+        System.out.println("-----CONTADOR DE NUMEROS PARES E IMPARES-----");
+        do{
+        System.out.println("------Por favor imprima valores iguales de filas y columnas para continuar------");
+        System.out.println("Indica la cantidad de filas: ");
+        opcion_filas = sc.nextInt();
+        System.out.println("Indica la cantidad de columnas: ");
+        opcion_columnas = sc.nextInt();
+    }
+        while(opcion_filas != opcion_columnas);
+        //Math.random()* 10 da valores de 0.0 a 10.0, excluido el 10.0
+
         }
     }
 }
