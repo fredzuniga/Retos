@@ -138,5 +138,10 @@ public class reto3 {
         //Math.random()* 10 da valores de 0.0 a 10.0, excluido el 10.0
 
         }
+        //constructor
+        public Matriz(int opcion_filas, int opcion_columnas){
+            this.filas = opcion_filas;
+            this.columnas = opcion_columnas;
+        }
     }
 }
