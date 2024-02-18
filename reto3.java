@@ -127,31 +127,34 @@ public class reto3 {
         /*
          * creacion de matriz que tiene los valores especificados de filas y columnas
          */
-        private int vector [][] = new int [opcion_filas][opcion_columnas];
+        private int [][] vector= new int [this.opcion_filas][this.opcion_columnas];
         Scanner sc = new Scanner(System.in);
 
-        private void conteo_matriz(){
+        private void conteo_matriz() throws IOException{
         System.out.println("-----CONTADOR DE NUMEROS PARES E IMPARES-----");
         do{
         System.out.println("------Por favor imprima valores iguales de filas y columnas para continuar------");
         System.out.print("Indica la cantidad de filas: ");
-        opcion_filas = sc.nextInt();
+        this.opcion_filas = sc.nextInt();
         System.out.print("Indica la cantidad de columnas: ");
-        opcion_columnas = sc.nextInt();
+        this.opcion_columnas = sc.nextInt();
     }
         while(opcion_filas != opcion_columnas);
         }
 
-        public static void desplegar_matriz(int vector[][]){
-            for(int x = 0; x < vector.length; x++){
-                for(int y = 0; y < vector[0].length; y++){
+        public void desplegar_matriz(int [][] vector){
+            for(int x = 0; x < this.opcion_filas; x++){
+                for(int y = 0; y < this.opcion_columnas; y++){
+                    int valor_matriz;
+                    valor_matriz = (int)(Math.random() * 100);
+                    this.vector[x][y] = valor_matriz;
                     System.out.println(vector[x][y] + " ");
                 }
                 System.out.println();
             }
         }
 
-        public void iniciar(){
+        public void iniciar() throws IOException{
             conteo_matriz();
             desplegar_matriz(vector);
         }        
