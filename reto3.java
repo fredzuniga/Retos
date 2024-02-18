@@ -1,5 +1,5 @@
 /*
- * Reto 3: Diccionario y matriz
+ * Reto 3 y 4: Diccionario y matriz
  * Por: Alan Bauza Alfonso
  */
 import java.util.Scanner;
@@ -64,7 +64,7 @@ public class reto3 {
                             System.out.println("Palabras dentro del diccionario: " + palabras.length);
                             for(int i = 0; i < palabras.length; i++){
                                 //imprimir cada palabra y sus caracteres y los caracteres de los significados
-                                System.out.println("Palabra: " + palabras[i] + " Numero de caracteres: " + palabras[i].length() + ". Numero de caracteres del significado: " + significados[i].length());
+                                System.out.println("Palabra: " + palabras[i] + ". Numero de caracteres: " + palabras[i].length() + ". Numero de caracteres del significado: " + significados[i].length());
                             }
                         }
                         case 'S' ->{
