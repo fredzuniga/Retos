@@ -76,7 +76,9 @@ public class reto3 {
 
             }
             case 2->{
-                
+                reto3 m = new reto3();
+                Matriz matriz = m.new Matriz();
+                matriz.iniciar();
             }
             default -> System.out.println("Por favor elija una opcion disponible");
         }
@@ -120,28 +122,38 @@ public class reto3 {
         }
     }
     public class Matriz{
+        private int opcion_filas;
+        private int opcion_columnas;
+        /*
+         * creacion de matriz que tiene los valores especificados de filas y columnas
+         */
+        private int vector [][] = new int [opcion_filas][opcion_columnas];
         Scanner sc = new Scanner(System.in);
-        public void conteo_matriz(){
-        //programa de matriz
-        int opcion_filas;
-        int opcion_columnas;
 
+        private void conteo_matriz(){
         System.out.println("-----CONTADOR DE NUMEROS PARES E IMPARES-----");
         do{
         System.out.println("------Por favor imprima valores iguales de filas y columnas para continuar------");
-        System.out.println("Indica la cantidad de filas: ");
+        System.out.print("Indica la cantidad de filas: ");
         opcion_filas = sc.nextInt();
-        System.out.println("Indica la cantidad de columnas: ");
+        System.out.print("Indica la cantidad de columnas: ");
         opcion_columnas = sc.nextInt();
     }
         while(opcion_filas != opcion_columnas);
-        //Math.random()* 10 da valores de 0.0 a 10.0, excluido el 10.0
+        }
 
+        public static void desplegar_matriz(int vector[][]){
+            for(int x = 0; x < vector.length; x++){
+                for(int y = 0; y < vector[0].length; y++){
+                    System.out.println(vector[x][y] + " ");
+                }
+                System.out.println();
+            }
         }
-        //constructor
-        public Matriz(int opcion_filas, int opcion_columnas){
-            this.filas = opcion_filas;
-            this.columnas = opcion_columnas;
-        }
+
+        public void iniciar(){
+            conteo_matriz();
+            desplegar_matriz(vector);
+        }        
     }
 }
