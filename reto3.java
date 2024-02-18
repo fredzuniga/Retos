@@ -1,4 +1,7 @@
-//Reto 3    **Diccionario y matriz**    Alan Bauza
+/*
+ * Reto 3: Diccionario y matriz
+ * Por: Alan Bauza Alfonso
+ */
 import java.util.Scanner;
 import java.io.IOException;
 public class reto3 {
@@ -25,7 +28,6 @@ public class reto3 {
         switch (opcion) {
             case 1->{
                 //programa de diccionario
-
                 char opcion_diccionario = 'x';
                 System.out.println("--------DICCIONARIO--------" 
                 + "\nBienvenido al diccionario, escoge una opcion: ");
@@ -122,41 +124,105 @@ public class reto3 {
         }
     }
     public class Matriz{
-        private int opcion_filas;
-        private int opcion_columnas;
-        /*
-         * creacion de matriz que tiene los valores especificados de filas y columnas
-         */
-        private int [][] vector= new int [this.opcion_filas][this.opcion_columnas];
+        //entradas de usuario
+        private int opcionFilas;
+        private int opcionColumnas;
+        //matriz que contiene los valores especificados con opcionFilas y opcionColumnas
+        private int [][] vector;
+        //numeros pares e impares de filas y luego columnas
+        private int pares = 0;
+        private int impares = 0;
+        private int sumaTotal = 0;
+        private int paresColumna = 0;
+        private int imparesColumna = 0;
         Scanner sc = new Scanner(System.in);
 
-        private void conteo_matriz() throws IOException{
+        private void conteoMatriz() throws IOException{
         System.out.println("-----CONTADOR DE NUMEROS PARES E IMPARES-----");
         do{
         System.out.println("------Por favor imprima valores iguales de filas y columnas para continuar------");
         System.out.print("Indica la cantidad de filas: ");
-        this.opcion_filas = sc.nextInt();
+        this.opcionFilas = sc.nextInt();
         System.out.print("Indica la cantidad de columnas: ");
-        this.opcion_columnas = sc.nextInt();
+        this.opcionColumnas = sc.nextInt();
     }
-        while(opcion_filas != opcion_columnas);
+        while(opcionFilas != opcionColumnas);
         }
 
-        public void desplegar_matriz(int [][] vector){
-            for(int x = 0; x < this.opcion_filas; x++){
-                for(int y = 0; y < this.opcion_columnas; y++){
-                    int valor_matriz;
-                    valor_matriz = (int)(Math.random() * 100);
-                    this.vector[x][y] = valor_matriz;
-                    System.out.println(vector[x][y] + " ");
+        /*
+         * funcion para ordenar numeros a partir de los datos de opcionFilas y opcionColumnas y luego imprimirla
+         */
+        public void desplegarMatriz() {
+            vector = new int[opcionFilas][opcionColumnas];
+
+            // Llenar la matriz
+            for (int x = 0; x < opcionFilas; x++) {
+                for (int y = 0; y < opcionColumnas; y++) {
+                    int valorMatriz = (int) (Math.random() * 100);
+                    vector[x][y] = valorMatriz;
+                }
+            }
+        
+            // Imprimir la matriz
+            System.out.println();
+            for (int[] fila : vector) {
+                for (int valor : fila) {
+                    System.out.print(valor + "\t");
                 }
                 System.out.println();
             }
+            System.out.println("\n---------------------------------");
         }
 
+        /*
+         * funcion que cuenta los numeros pares e impares dentro de la matriz por filas y columnas
+         * impresion de cuantos numeros pares e impares estan en cada fila y columna
+         * luego de esto imprime la suma de cada valor dentro el vector y la imprime
+         */
+        public void conteoParesImpares(){
+            //conteo de pares e impares por cada iteracion en filas
+            for (int x = 0; x < opcionFilas; x++) {
+                for (int y = 0; y < opcionColumnas; y++) {
+                    if (vector[x][y] % 2 == 0) {
+                        pares++;
+                    }
+                    else{
+                        impares++;
+                    }
+                }
+            System.out.println("Fila " + x + ": Números pares = " + pares + ", Números impares = " + impares);
+        }
+            System.out.println("\n---------------------------------");
+        
+            //conteo de números pares e impares por cada iteracion en columnas
+            for (int y = 0; y < opcionColumnas; y++) {
+                for (int x = 0; x < opcionFilas; x++) {
+                    if (vector[x][y] % 2 == 0) {
+                        paresColumna++;
+                    }
+                    else{
+                        imparesColumna++;
+                    }
+                }
+            System.out.println("Columna " + y + ": Números pares = " + paresColumna + ", Números impares = " + imparesColumna);
+        }
+        
+            //calcular e imprimir la suma total
+            for (int[] fila : vector) {
+                for (int valor : fila) {
+                sumaTotal += valor;
+            }
+        }
+            System.out.println("\nLa suma total de los valores del vector es: " + sumaTotal);
+        }
+
+        /*
+         * funcion de inicio de programa de matriz donde se ejecuta cada funcion creada con anterioridad
+         */
         public void iniciar() throws IOException{
-            conteo_matriz();
-            desplegar_matriz(vector);
+            conteoMatriz();
+            desplegarMatriz();
+            conteoParesImpares();
         }        
     }
 }
