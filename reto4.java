@@ -7,22 +7,32 @@ import java.util.Scanner;
 public class reto4 {
     public static void main(String[] args) throws IOException{
         Scanner sc = new Scanner(System.in);
-        char opcion;
-        System.out.println("------Sistema de registro de ventas------");
-        System.out.println("A. Realizar venta de boleto. \nB. Mostrar datos de la lista de ventas. \nS. Finalizar el programa.");
-        opcion = sc.next().charAt(0);
-        switch (opcion) {
-            case 'A' ->{
-
+        char opcion = 'c';
+        do{
+            System.out.println("------Sistema de registro de ventas------");
+            System.out.println("A. Realizar venta de boleto. \nB. Mostrar datos de la lista de ventas. \nS. Finalizar el programa.");
+            opcion = sc.next().charAt(0);
+            switch (opcion) {
+                case 'A' ->{
+                    System.out.println("A");
+                    break;
+                }
+                case 'B' ->{
+    
+                }
+                case 'S' ->{
+                    System.out.println("----FIN DEL PROGRAMA----");
+                }
+                default -> {
+                    System.out.println("Escribe una opcion valida");
+                    break;
+                }
             }
-            case 'B' ->{
-
-            }
-            case 'S' ->{
-                System.out.println("----FIN DEL PROGRAMA----");
-            }
-            default -> System.out.println("Escribe una opcion valida");
-        }
+        }while(opcion != 'S');
         sc.close();
+        }
+
+        public class Venta {
+            
+        }
     }
-}
