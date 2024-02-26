@@ -15,6 +15,7 @@ public class reto4 {
         public class Venta {
             private String nombre_comprador;
             private int cantidad_boletos;
+            char opcion = 'c';
 
             //constructor
             Venta(String nombre_comprador, int cantidad_boletos){
@@ -22,12 +23,9 @@ public class reto4 {
                 this.cantidad_boletos = cantidad_boletos;
             }
             
-            char opcion = 'c';
-
             /*
              * Iniciar el sistema de registro de ventas de boletos
              */
-
             public void registro_ventas(){
                 Scanner sc = new Scanner(System.in);
                 do{
@@ -63,7 +61,6 @@ public class reto4 {
             /*
              * Iniciar el programa 
              */
-
             public void iniciar(){
                 registro_ventas();
             }
