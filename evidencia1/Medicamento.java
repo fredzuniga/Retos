@@ -1,82 +1,53 @@
 package evidencia1;
 
-public class Medicamento {
-    private String nombreQuimico;
-    private String nombreGenerico;
-    private String nombreRegistrado;
-    private double precioPublico;
-    //private double precioVenta;
-    private int formaFarmaceutica;
-
-    /*
-     * seleccionar todas las variables y crear constructor con el foquito
-     */
-    public Medicamento(String nombreQuimico, String nombreGenerico, String nombreRegistrado, double precioPublico,
-            double precioVenta, int formaFarmaceutica) {
+public class Medicamento{
+    private String nombreQuimico, nombreGenerico, nombreRegistrado;
+    private float precioPublico, precioVenta;
+    Presentaciones presentacion;
+    //numeracion de presentaciones para comparar
+    private enum Presentaciones {
+        SOLIDO,
+        SEMISOLIDO,
+        LIQUIDO,
+        NODEF
+    }
+    public Medicamento(String nombreQuimico, String nombreGenerico, String nombreRegistrado, float precioPublico, char presentacionTipo){
         this.nombreQuimico = nombreQuimico;
         this.nombreGenerico = nombreGenerico;
         this.nombreRegistrado = nombreRegistrado;
         this.precioPublico = precioPublico;
-        this.formaFarmaceutica = formaFarmaceutica;
-        //this.precioVenta = precioVenta;
-    }
-
-    //constructor vacio
-    public Medicamento(){}
-
-    //constructor exclusivo del nombreQuimico
-    public Medicamento(String nombreQuimico) {
-        this.nombreQuimico = nombreQuimico;
-    }
-
-    public String getNombreQuimico() {
-        return nombreQuimico;
-    }
-    public void setNombreQuimico(String nombreQuimico) {
-        this.nombreQuimico = nombreQuimico;
-    }
-    public String getNombreGenerico() {
-        return nombreGenerico;
-    }
-    public void setNombreGenerico(String nombreGenerico) {
-        this.nombreGenerico = nombreGenerico;
-    }
-    public String getNombreRegistrado() {
-        return nombreRegistrado;
-    }
-    public void setNombreRegistrado(String nombreRegistrado) {
-        this.nombreRegistrado = nombreRegistrado;
-    }
-    public double getPrecioPublico() {
-        return precioPublico;
-    }
-    public void setPrecioPublico(double precioPublico) {
-        this.precioPublico = precioPublico;
-    }
-    /*public double getPrecioVenta() {
-        //TODO modificar para devolver con porcentaje
-        return precioVenta;
-    }*/
-    public double getPrecioVentaPorcentaje(){
-        double precioFinal = 0;
-        switch(formaFarmaceutica){
-            case 1 ->{
-                precioFinal = precioPublico * 0.09;
+        switch(presentacionTipo){
+            case '1'->{
+                this.presentacion = Presentaciones.SOLIDO;
+                this.precioVenta = precioPublico + (precioPublico * 0.09f);
             }
-            case 2 ->{
-                precioFinal = precioPublico * 0.12;
+            case '2'->{
+                this.presentacion = Presentaciones.SEMISOLIDO;
+                this.precioVenta = precioPublico + (precioPublico * 0.12f);
             }
-            case 3 ->{
-                precioFinal = precioPublico * 0.13;
+            case '3'->{
+                this.presentacion = Presentaciones.LIQUIDO;
+                this.precioVenta = precioPublico + (precioPublico * 0.13f);
+            }
+            default-> {
+                this.presentacion = Presentaciones.NODEF;
+                this.precioVenta = precioPublico + (precioPublico * 0.1f);
             }
         }
-        return precioFinal;
     }
-    public int getFormaFarmaceutica() {
-        return formaFarmaceutica;
+    public void imprimirDatos(){
+        String definirPresentacion;
+        System.out.println("Nombre Químico: " + nombreQuimico);
+        System.out.println("Nombre Genérico: " + nombreGenerico);
+        System.out.println("Nombre Registrado: " + nombreRegistrado);
+        System.out.println("Precio al público: $" + precioPublico);
+        System.out.println("Precio de venta: $" + precioVenta);
+        definirPresentacion = switch(presentacion){
+            case Presentaciones.SOLIDO->"Sólido";
+            case Presentaciones.LIQUIDO->"Líquido";
+            case Presentaciones.SEMISOLIDO->"Semi Sólido";
+            default->"No tiene presentacion definida";
+        };
+        System.out.println("Presentación: " + definirPresentacion);
     }
-    public void setFormaFarmaceutica(int formaFarmaceutica) {
-        this.formaFarmaceutica = formaFarmaceutica;
-    }   
-    
 }

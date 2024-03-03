@@ -7,47 +7,23 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //importar la clase medicamento para la evidencia
 import evidencia1.Medicamento;
 
 public class evidencia1 {
-    private String admin_usuario, admin_password;
+    private static String admin_usuario = "alan";
+    private static String admin_password = "bauza";
     //Arraylist del tipo de clase Medicamento
     private static ArrayList <Medicamento> listaMedicamentos = new ArrayList <Medicamento>();
     public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
-    public static void main(String[] args) {
-        /*
-         * Empieza el programa sin usuario o contrasenia
-         * //TODO agregar el inicio de sesion al programa
-         * //TODO terminar caso A de agregar medicamentos
-         */
-        char opcion = ' ';
-        System.out.println("Evidencia 1 --- Registro de medicamentos");
-        do{
-            System.out.println("Indica una opcion. \nA. Registrar medicamento \nS. Salir del programa");
-            try {
-                opcion = entrada.readLine().charAt(0);
-                switch(opcion){
-                    case 'A' ->{
-                        System.out.println("Indica el nombre quimico: ");
-                        String nombreQuimico = entrada.readLine();
-                        Medicamento medicamento = new Medicamento(nombreQuimico);
-                        listaMedicamentos.add(medicamento);
-                    }
-                    case 'S' ->{
-
-                    }
-                    default -> System.out.println("Escoje una opcion valida.");
-                }
-            } catch (IOException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }while(opcion != 'S');
+    public static void main(String[] args) throws IOException {
+        iniciar_programa();
     }
-    public void inicio_sesion(){
-        String usuario = " ", password = " ";
-        try {
+    private static void inicio_sesion(String user, String pass)throws IOException{
+        String usuario = "alan", password = "bauza";
             while(admin_usuario.equals(usuario) == false && (admin_password.equals(password) == false)){
                 System.out.println("Ingrese el usuario: ");
                 usuario = entrada.readLine();
@@ -60,9 +36,55 @@ public class evidencia1 {
                 else{
                     System.out.println("Reintentar el inicio");
                 }
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
-        }
+}
+    public static void iniciar_programa() throws IOException{
+        inicio_sesion(admin_usuario, admin_password);
+        char opcion = ' ';
+        do{
+            System.out.println("Evidencia 1 --- Registro de medicamentos --- ");
+            System.out.println("Indica una opcion. \nA. Registrar medicamento \nS. Salir del programa");
+                opcion = entrada.readLine().charAt(0);
+                switch(opcion){
+                    /*
+                     * Pedir datos de medicinas y meterlos en el ArrayList las veces que sean necesarias
+                     */
+                    case 'A' ->{
+                        System.out.println("Indica el nombre quimico: ");
+                        String nombreQuimico = entrada.readLine();
+
+                        System.out.println("Indica el nombre generico: ");
+                        String nombreGenerico = entrada.readLine();
+
+                        System.out.println("Indica el nombre registrado: ");
+                        String nombreRegistrado = entrada.readLine();
+
+                        System.out.println("Indica el precio para el publico: ");
+                        float precioPublico = Float.parseFloat(entrada.readLine());
+
+                        System.out.println("Ingresa el tipo de presentacion o forma farmaceutica: \n1. solida\n2. solida semisolida\n3. solida liquida");
+                        char presentacionTipo = entrada.readLine().charAt(0);
+
+                        Medicamento medicamentoNuevo = new Medicamento(nombreQuimico, nombreGenerico, nombreRegistrado, precioPublico, presentacionTipo); // Create medicament object
+                        listaMedicamentos.add(medicamentoNuevo);
+                    }
+                    case 'S' ->{
+                        System.out.println("Gracias por usar este programa");
+                        mostrarLista();
+                    }
+                    default -> System.out.println("Escoje una opcion valida.");
+                }
+        }while(opcion != 'S');
     }
+    private static void mostrarLista(){
+        //mostrar la lista con su horario e informacion completa
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            System.out.println("Reporte generado en un horario de: " + dtf.format(LocalDateTime.now()));
+            System.out.println("Medicamentos registrados: " + listaMedicamentos.size());
+            for(int i = 0; i < listaMedicamentos.size(); i++){
+                System.out.println("------- MEDICAMENTO " + (i + 1) + " ---------");
+                System.out.println("Registrado por: " + admin_usuario);
+                listaMedicamentos.get(i).imprimirDatos();
+            }
+        }
 }
