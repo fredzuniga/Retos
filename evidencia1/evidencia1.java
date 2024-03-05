@@ -79,8 +79,11 @@ public class evidencia1 {
     private static void mostrarLista(){
         //mostrar la lista con su horario e informacion completa
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-            System.out.println("Reporte generado en un horario de: " + dtf.format(LocalDateTime.now()));
+            System.out.println("Reporte generado el dia: " + dtf.format(LocalDateTime.now()));
             System.out.println("Medicamentos registrados: " + listaMedicamentos.size());
+            if(listaMedicamentos.isEmpty()){
+                System.out.println("La lista de medicamentos esta vacia, es necesario agregar medicamentos");
+            }
             for(int i = 0; i < listaMedicamentos.size(); i++){
                 System.out.println("------- MEDICAMENTO " + (i + 1) + " ---------");
                 System.out.println("Registrado por: " + admin_usuario);
