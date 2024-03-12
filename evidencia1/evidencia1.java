@@ -65,7 +65,8 @@ public class evidencia1 {
                         System.out.println("Ingresa el tipo de presentacion o forma farmaceutica: \n1. solida\n2. solida semisolida\n3. solida liquida");
                         char presentacionTipo = entrada.readLine().charAt(0);
 
-                        Medicamento medicamentoNuevo = new Medicamento(nombreQuimico, nombreGenerico, nombreRegistrado, precioPublico, presentacionTipo); // Create medicament object
+                        // Creacion de objeto medicamento
+                        Medicamento medicamentoNuevo = new Medicamento(nombreQuimico, nombreGenerico, nombreRegistrado, precioPublico, presentacionTipo); 
                         listaMedicamentos.add(medicamentoNuevo);
                     }
                     case 'S' ->{
