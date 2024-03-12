@@ -4,8 +4,5 @@
 # Notas particulares
 *.txt
 
-#clase POO
-arrays_clase.java
-ejemplos.java
-excepciones.java
-ejemplo_vector.java
+#carpeta de ejemplos
+clasePOO/
