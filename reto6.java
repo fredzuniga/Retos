@@ -9,8 +9,8 @@ import java.util.Date;
 
 public class reto6 {
     public static void main(String[] args) throws IOException{
-        ArrayList <Object> empleadosRegistrados = new ArrayList<>();
-
+        ArrayList <Empleados> empleadosRegistrados = new ArrayList<>();
+        DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/mm/aa");
     }
 
     private class Empleados{
@@ -19,6 +19,14 @@ public class reto6 {
         int horasTrabajadasExtras;
         int telefono;
         Date fechaNacimiento;
-        private static DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/mm/aa");
+        ArrayList <categoria> categoriaEmpleado = new ArrayList<>();
+
+    }
+
+    private class categoria{
+        String nombreCategoria;
+        String claveCategoria;
+        double sueldoBase;
+        double horaExtra;
     }
 }
