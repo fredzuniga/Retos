@@ -23,7 +23,7 @@ public class evidencia1 {
         iniciar_programa();
     }
     private static void inicio_sesion(String user, String pass)throws IOException{
-        String usuario = "alan", password = "bauza";
+        String usuario = " ", password = " ";
             while(admin_usuario.equals(usuario) == false && (admin_password.equals(password) == false)){
                 System.out.println("Ingrese el usuario: ");
                 usuario = entrada.readLine();
