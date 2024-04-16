@@ -1,35 +1,82 @@
 /*
  * Por: Alan Bauza Alfonso
- * Reto 6: Nomina basica de empleados
+ * Reto 6: Nomina basica de empleados utilizando constructores
  */
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+//import java.util.Date;
 
 public class reto6 {
     public static void main(String[] args) throws IOException{
+        //acceder a la clase SistemaNomina desde el reto6
         SistemaNomina software1 = new SistemaNomina();
+        software1.registrarEmpleados();
         software1.calcularNomina();
     }
+}
 
 //!Clase SistemaNomina
-public class SistemaNomina{
+class SistemaNomina{
     //array de categorias
-    Categoria listaCategorias[];
+    private Categoria listaCategorias[];
+    private Empleado listaEmpleados[];
+    private BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
     //Definicion de las categorias dentro de sus posiciones
     public SistemaNomina(){
         listaCategorias = new Categoria[3];
+        listaEmpleados = new Empleado[5];   //5 empleados de la empresa
+
+
         //en posicion [0] hay un objeto tipo Categoria
         //opcion 1 de declaracion de categorias
-        listaCategorias[0] = new Categoria("Empleado ventas", "VENT", 100, 50); 
+        listaCategorias[0] = new Categoria("Empleado ventas", "VENT", 100.00, 50.00); 
 
         //opcion 2 de declaracion de categorias
-        Categoria administrador = new Categoria("Administrador", "Admin", 180, 100);
+        Categoria administrador = new Categoria("Administrador", "Admin", 180.00, 100.00);
         listaCategorias[1] = administrador;
 
-        listaCategorias[2] = new Categoria("Gerente", "GERT", 250, 150);
+        listaCategorias[2] = new Categoria("Gerente", "GERT", 250.00, 150.00);
     }
-    public void calcularNomina(){
+    public void registrarEmpleados() throws IOException{
+        for(int i = 0; i < 5; i++){
+            System.out.println("Indica el nombre del empleado: ");
+            String nombre = entrada.readLine();
+
+            System.out.println("Indica ahora las horas trabajadas: ");
+            int horasTrabajadas = Integer.parseInt(entrada.readLine());
+
+            System.out.println("Ahora escribe las horas extras trabajadas: ");
+            int horasTrabajadasExtra = Integer.parseInt(entrada.readLine());
+
+            System.out.println("Escribe el telefono del empleado: ");
+            String telefono = entrada.readLine();
+
+            //TODO: Aprender a ocupar el Date
+            /*System.out.println("Escribe la fecha de nacimiento del empleado: ");
+            Date fechaNacimiento = entrada.readLine();
+            */
+            System.out.println("Indica la categoria del empleado: \nCategoria 1: Empleado ventas.\nCategoria 2: Administrador\nCategoria 3: Gerente.");
+            int categoriaSeleccionada = Integer.parseInt(entrada.readLine());
+
+            //colocar la respuesta en su respectiva posicion y llenar parametros
+            Categoria categoriaAsignar = listaCategorias[categoriaSeleccionada - 1];
+            listaEmpleados[i] = new Empleado(nombre, horasTrabajadas, horasTrabajadasExtra, telefono, categoriaAsignar);
+        }
+    }
+
+    //metodo de calculo de nomina
+    public void calcularNomina() throws IOException{
         //Calculo y generacion de reporte
+        int totalHorasExtrasTrabajadas;
+        double sueldoAPagar;
+        for(int i = 0; i < 5; i++){
+            Empleado empleado = listaEmpleados[i];
+            //entrar a categoria y devolver el sueldo base, horasTrabajadas se convierte en double
+            sueldoAPagar = (double)empleado.getHorasTrabajadas() * empleado.getCategoria().getSueldoBase();
+            //TODO: terminar de juntar los datos e imprimir
+        }
     }
 }
 /*public class SistemaNomina{
@@ -43,7 +90,7 @@ public class SistemaNomina{
 }*/
 
 //!Clase Empleado
-public class Empleado{
+class Empleado{
     private String nombre;
     private int horasTrabajadas;
     private int horasTrabajadasExtra;
@@ -105,7 +152,7 @@ public class Empleado{
 }
 
 //!Clase Categoria
-public class Categoria{
+class Categoria{
     private String nombreCategoria;
     private String claveCategoria;
     private double sueldoBase;
@@ -157,4 +204,4 @@ public class Categoria{
     }
 }
 
-}
+
