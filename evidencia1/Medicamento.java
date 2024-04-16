@@ -43,9 +43,9 @@ public class Medicamento{
         System.out.println("Precio al público: $" + precioPublico);
         System.out.println("Precio de venta: $" + precioVenta);
         definirPresentacion = switch(presentacion){
-            case Presentaciones.SOLIDO->"Sólido";
-            case Presentaciones.LIQUIDO->"Líquido";
-            case Presentaciones.SEMISOLIDO->"Semi Sólido";
+            case SOLIDO->"Sólido";
+            case LIQUIDO->"Líquido";
+            case SEMISOLIDO->"Semi Sólido";
             default->"No tiene presentacion definida";
         };
         System.out.println("Presentación: " + definirPresentacion);
