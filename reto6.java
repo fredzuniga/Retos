@@ -6,9 +6,43 @@ import java.io.IOException;
 
 public class reto6 {
     public static void main(String[] args) throws IOException{
-
+        SistemaNomina software1 = new SistemaNomina();
+        software1.calcularNomina();
     }
 
+//!Clase SistemaNomina
+public class SistemaNomina{
+    //array de categorias
+    Categoria listaCategorias[];
+
+    //Definicion de las categorias dentro de sus posiciones
+    public SistemaNomina(){
+        listaCategorias = new Categoria[3];
+        //en posicion [0] hay un objeto tipo Categoria
+        //opcion 1 de declaracion de categorias
+        listaCategorias[0] = new Categoria("Empleado ventas", "VENT", 100, 50); 
+
+        //opcion 2 de declaracion de categorias
+        Categoria administrador = new Categoria("Administrador", "Admin", 180, 100);
+        listaCategorias[1] = administrador;
+
+        listaCategorias[2] = new Categoria("Gerente", "GERT", 250, 150);
+    }
+    public void calcularNomina(){
+        //Calculo y generacion de reporte
+    }
+}
+/*public class SistemaNomina{
+    //private int cantidadEmpleados
+    public SistemaNomina(){
+        calcularNomina();   //al crear un objeto de tipo SistemaNomina se calcula automaticamente
+    }
+    private void calcularNomina(){
+        //Calculo y generacion de reporte
+    }
+}*/
+
+//!Clase Empleado
 public class Empleado{
     private String nombre;
     private int horasTrabajadas;
@@ -26,6 +60,9 @@ public class Empleado{
         this.categoria = categoria;
     }
 
+    /*
+     * Getters y setters dentro de Empleado para definir parametros
+     */
     public String getNombre() {
         return nombre;
     }
@@ -67,6 +104,7 @@ public class Empleado{
     }    
 }
 
+//!Clase Categoria
 public class Categoria{
     private String nombreCategoria;
     private String claveCategoria;
