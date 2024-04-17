@@ -82,7 +82,9 @@ class SistemaNomina{
     //metodo de calculo de nomina
     public void calcularNomina() throws IOException{
         //Calculo y generacion de reporte
+
         double totalNominaEmpresa = 0.0;    //totales
+        //acceder a el sueldo a pagar de cada uno de los empleados
         double[] sueldoAPagar = new double[5];    //individual
         double sueldoHorasExtra;    //individual
 
@@ -122,6 +124,7 @@ class SistemaNomina{
             System.out.println("Datos de los empleados: \n");
             //Imprimir los datos de cada empleado
             for(int e = 0; e < 5; e ++){
+                //listaEmpleados[e] para encontrar los datos de cada empleado dentro de la lista que se creó
                 System.out.println(e+1 + ".- " + listaEmpleados[e].getNombre() + " - Categoria: " + listaEmpleados[e].getCategoria().getNombreCategoria());
                 System.out.println("Sueldo base: $" + listaEmpleados[e].getCategoria().getSueldoBase());
                 System.out.println("Horas trabajadas: " + listaEmpleados[e].getHorasTrabajadas());
@@ -138,7 +141,7 @@ class SistemaNomina{
         System.out.println("Total de empleados sin horas extras: " + personasSinHorasExtra);
         System.out.println("Total de horas extras laboradas: " + sumaHorasExtra + " horas.");
         System.out.println("-----Fin del programa, muchas gracias por utilizar este programa!-----");
-        System.out.println("-----Version 1.3-----");
+        System.out.println("-----Version 1.3.1-----");
     }
 }
 /*public class SistemaNomina{
