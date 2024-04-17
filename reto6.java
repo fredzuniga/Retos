@@ -118,7 +118,7 @@ class SistemaNomina{
             //seccion por empleado
             System.out.println("-----Reporte de nomina por empleado-----");
             System.out.println("Cantidad de empleados: " + listaEmpleados.length);
-            System.out.println("Datos de los empleados: ");
+            System.out.println("Datos de los empleados: \n");
             for(int e = 0; e < 5; e ++){
                 System.out.println(e+1 + ".- " + empleado.getNombre() + " - Categoria: " + empleado.getCategoria().getNombreCategoria());
                 System.out.println("Sueldo base: $" + empleado.getCategoria().getSueldoBase());
@@ -137,7 +137,7 @@ class SistemaNomina{
         System.out.println("Total de empleados sin horas extras: " + personasSinHorasExtra);
         System.out.println("Total de horas extras laboradas: " + sumaHorasExtra + " horas.");
         System.out.println("-----Fin del programa, muchas gracias por utilizar este programa!-----");
-        System.out.println("-----Version 1.2-----");
+        System.out.println("-----Version 1.2.1-----");
     }
 }
 /*public class SistemaNomina{
