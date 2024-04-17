@@ -10,9 +10,9 @@ import java.io.InputStreamReader;
 public class reto6 {
     public static void main(String[] args) throws IOException{
         //acceder a la clase SistemaNomina desde el reto6
-        SistemaNomina software1 = new SistemaNomina();
-        software1.registrarEmpleados();
-        software1.calcularNomina();
+        SistemaNomina inicioPrograma = new SistemaNomina();
+        inicioPrograma.registrarEmpleados();
+        inicioPrograma.calcularNomina();
     }
 }
 
@@ -43,6 +43,7 @@ class SistemaNomina{
 
     public void registrarEmpleados() throws IOException{        
         for(int i = 0; i < 5; i++){
+            System.out.println("-----Captura de datos por empleado-----");
             System.out.println("\nIndica el nombre del empleado: ");
             String nombre = entrada.readLine();
 
@@ -82,9 +83,8 @@ class SistemaNomina{
     public void calcularNomina() throws IOException{
         //Calculo y generacion de reporte
         double totalNominaEmpresa = 0.0;    //totales
-        double sueldoAPagar;    //individual
+        double sueldoAPagar = 0.0;    //individual
         double sueldoHorasExtra;    //individual
-        int totalHorasExtrasTrabajadas = 0; //totales
 
         int sumaHorasLaboradas = 0; //totales (numero real)
         double totalHorasTrabajadas = 0.0;    //totales (dinero)
@@ -114,8 +114,6 @@ class SistemaNomina{
             //calculo del total de nomina de la empresa
             totalNominaEmpresa = sueldoAPagar + sueldoHorasExtra + totalNominaEmpresa;
 
-            //TODO: terminar de juntar los datos e imprimir
-
             //! Impresion de los datos
             //seccion por empleado
             System.out.println("-----Reporte de nomina por empleado-----");
@@ -129,7 +127,8 @@ class SistemaNomina{
                 System.out.println("Pago neto: $" + sueldoAPagar + "\n");
             }
         }
-        //seccion general
+        
+        //seccion general de la empresa
         System.out.println("-----Reporte de nomina de la empresa-----");
         System.out.println("Pago total nomina: $" + totalNominaEmpresa);
         System.out.println("Pago total horas trabajadas: $" + totalHorasTrabajadas);
@@ -138,6 +137,7 @@ class SistemaNomina{
         System.out.println("Total de empleados sin horas extras: " + personasSinHorasExtra);
         System.out.println("Total de horas extras laboradas: " + sumaHorasExtra + " horas.");
         System.out.println("-----Fin del programa, muchas gracias por utilizar este programa!-----");
+        System.out.println("-----Version 1.2-----");
     }
 }
 /*public class SistemaNomina{
@@ -264,5 +264,3 @@ class Categoria{
         this.pagoHoraExtra = pagoHoraExtra;
     }
 }
-
-
