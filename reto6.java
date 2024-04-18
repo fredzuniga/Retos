@@ -53,12 +53,7 @@ class SistemaNomina{
             System.out.println("El empleado trabajo horas extra? Si es asi especifique cuantas, si no escriba 0: ");
             int horasTrabajadasExtra = Integer.parseInt(entrada.readLine());
             //Si hay horas extra entonces se aumenta la cantidad de empleados con horas extra, si no entonces la cantidad de empleados sin horas extra
-            if (horasTrabajadasExtra != 0){
-                personasConHorasExtra ++;
-            }
-            else{
-                personasSinHorasExtra ++;
-            }
+            
 
             System.out.println("Escribe el telefono del empleado: ");
             String telefono = entrada.readLine();
@@ -116,6 +111,14 @@ class SistemaNomina{
             //calculo del total de nomina de la empresa
             totalNominaEmpresa = sueldoAPagar[i] + sueldoHorasExtra + totalNominaEmpresa;
 
+            //comprobacion de horasTrabajadasExtra
+            if (empleado.getHorasTrabajadasExtra() > 0){
+                personasConHorasExtra ++;
+            }
+            else{
+                personasSinHorasExtra ++;
+            }
+
         }
         //! Impresion de los datos
             //seccion por empleado
@@ -141,7 +144,7 @@ class SistemaNomina{
         System.out.println("Total de empleados sin horas extras: " + personasSinHorasExtra);
         System.out.println("Total de horas extras laboradas: " + sumaHorasExtra + " horas.");
         System.out.println("-----Fin del programa, muchas gracias por utilizar este programa!-----");
-        System.out.println("-----Version 1.3.1-----");
+        System.out.println("-----Version 1.3.2-----");
     }
 }
 /*public class SistemaNomina{
