@@ -42,7 +42,7 @@ class SistemaNomina{
     }
 
     public void registrarEmpleados() throws IOException{        
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < listaEmpleados.length; i++){
             System.out.println("-----Captura de datos por empleado-----");
             System.out.println("\nIndica el nombre del empleado: ");
             String nombre = entrada.readLine();
@@ -126,9 +126,9 @@ class SistemaNomina{
             System.out.println("Cantidad de empleados: " + listaEmpleados.length);
             System.out.println("Datos de los empleados: \n");
             //Imprimir los datos de cada empleado
-            for(int e = 0; e < 5; e ++){
+            for(int e = 0; e < listaEmpleados.length; e ++){
                 //listaEmpleados[e] para encontrar los datos de cada empleado dentro de la lista que se creó
-                System.out.println(e+1 + ".- " + listaEmpleados[e].getNombre() + " - Categoria: " + listaEmpleados[e].getCategoria().getNombreCategoria());
+                System.out.println((e + 1) + ".- " + listaEmpleados[e].getNombre() + " - Categoria: " + listaEmpleados[e].getCategoria().getNombreCategoria());
                 System.out.println("Sueldo base: $" + listaEmpleados[e].getCategoria().getSueldoBase());
                 System.out.println("Horas trabajadas: " + listaEmpleados[e].getHorasTrabajadas());
                 System.out.println("Horas extras: " + listaEmpleados[e].getHorasTrabajadasExtra());
@@ -144,7 +144,7 @@ class SistemaNomina{
         System.out.println("Total de empleados sin horas extras: " + personasSinHorasExtra);
         System.out.println("Total de horas extras laboradas: " + sumaHorasExtra + " horas.");
         System.out.println("-----Fin del programa, muchas gracias por utilizar este programa!-----");
-        System.out.println("-----Version 1.3.2-----");
+        System.out.println("-----Version 1.3.3-----");
     }
 }
 /*public class SistemaNomina{
