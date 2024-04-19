@@ -52,8 +52,6 @@ class SistemaNomina{
 
             System.out.println("El empleado trabajo horas extra? Si es asi especifique cuantas, si no escriba 0: ");
             int horasTrabajadasExtra = Integer.parseInt(entrada.readLine());
-            //Si hay horas extra entonces se aumenta la cantidad de empleados con horas extra, si no entonces la cantidad de empleados sin horas extra
-            
 
             System.out.println("Escribe el telefono del empleado: ");
             String telefono = entrada.readLine();
@@ -80,7 +78,7 @@ class SistemaNomina{
 
         double totalNominaEmpresa = 0.0;    //totales
         //acceder a el sueldo a pagar de cada uno de los empleados
-        double[] sueldoAPagar = new double[5];    //individual
+        double[] sueldoAPagar = new double[listaEmpleados.length];    //individual
         double sueldoHorasExtra;    //individual
 
         int sumaHorasLaboradas = 0; //totales (numero real)
@@ -88,7 +86,7 @@ class SistemaNomina{
         int sumaHorasExtra = 0; //totales (numero real)
         double totalHorasExtra = 0.0;   //totales (dinero)
 
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < listaEmpleados.length; i++){
             Empleado empleado = listaEmpleados[i];
             //entrar a categoria y devolver el sueldo base, horasTrabajadas se convierte en double
             sueldoAPagar[i] = (double)empleado.getHorasTrabajadas() * empleado.getCategoria().getSueldoBase();
