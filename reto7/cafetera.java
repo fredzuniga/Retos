@@ -1,7 +1,11 @@
 package reto7;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.io.IOException;
 
 public class Cafetera {
+    private BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
     private int capacidadMaximaAgua;
     private int capacidadMaximaCafe;
     private int capacidadMaximaAzucar;
@@ -19,12 +23,14 @@ public class Cafetera {
         this.capacidadMaximaAgua = capacidadMaximaAgua;
         this.capacidadMaximaCafe = capacidadMaximaCafe;
         this.capacidadMaximaAzucar = capacidadMaximaAzucar;
-        
+
         cantidadActualAgua = capacidadMaximaAgua;
         cantidadActualCafe = capacidadMaximaCafe;
         cantidadActualAzucar = capacidadMaximaAzucar;
+
         conteoVasosCafe = 0;
         detalleVasosVendidos = new ArrayList<VasoCafe>();
+
         tiposVasosCafetera = new VasoCafe[6];
         tiposVasosCafetera[0] = new VasoCafe(120, 50, 1,"Vaso de cafe pequeño sin azucar", false, 0, 10.50);
         tiposVasosCafetera[1] = new VasoCafe(120, 50, 2,"Vaso de cafe pequeño con azucar", true, 20, 14.50);
@@ -40,6 +46,26 @@ public class Cafetera {
         //restar el azucar solo si contiene azucar la taza
         if(vasoAServir.getContieneAzucar()){
             cantidadActualAzucar -= vasoAServir.getCapacidadAzucar();
+            detalleVasosVendidos.add(vasoAServir);
+        }
+    }
+
+    //agregar cafe dependiendo de cuanto quiera agregar
+    public void agregarCafe(int cantidadAgregarCafe) throws IOException{
+        int sumaCafe = cantidadActualCafe + cantidadAgregarCafe;
+        if(cantidadActualCafe == capacidadMaximaCafe){
+            System.out.println("No se puede agregar mas cafe --> cafetera llena");
+        }
+        else{
+            System.out.println("Indique la cantidad de cafe a agregar: ");
+            cantidadAgregarCafe = Integer.parseInt(entrada.readLine());
+            
+            if(sumaCafe > capacidadMaximaCafe){
+                System.out.println("No se puede agregar mas cafe --> se desborda la cafetera");
+                System.out.println("Solo se puede agregar: " + (capacidadMaximaCafe - sumaCafe));
+            }
+            cantidadActualCafe += cantidadAgregarCafe;
+            System.out.println("Cantidad actual: " + cantidadActualCafe + " gramos");
         }
     }
 
