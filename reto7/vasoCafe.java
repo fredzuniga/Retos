@@ -1,21 +1,25 @@
 package reto7;
 
-public class vasoCafe{
+public class VasoCafe{
     private int capacidadAgua;
     private int capacidadCafe;
+    private int capacidadAzucar;
     private int tipoVaso;   //1...6
+    private String nombreTipoVaso;
     private boolean contieneAzucar;
     private double precioVaso;
 
     //constructor vacio
-    public vasoCafe(){}
+    public VasoCafe(){}
 
-    public vasoCafe(int capacidadAgua, int capacidadCafe, int tipoVaso, boolean contieneAzucar, double precioVaso) {
+    public VasoCafe(int capacidadAgua, int capacidadCafe, int tipoVaso, String nombreTipoVaso, boolean contieneAzucar,int capacidadAzucar, double precioVaso) {
         this.capacidadAgua = capacidadAgua;
         this.capacidadCafe = capacidadCafe;
         this.tipoVaso = tipoVaso;
         this.contieneAzucar = contieneAzucar;
+        this.capacidadAzucar = capacidadAzucar;
         this.precioVaso = precioVaso;
+        this.nombreTipoVaso = nombreTipoVaso;
     }
 
     public int getCapacidadAgua() {
@@ -42,7 +46,7 @@ public class vasoCafe{
         this.tipoVaso = tipoVaso;
     }
 
-    public boolean isContieneAzucar() {
+    public boolean getContieneAzucar() {
         return contieneAzucar;
     }
 
@@ -57,5 +61,20 @@ public class vasoCafe{
     public void setPrecioVaso(double precioVaso) {
         this.precioVaso = precioVaso;
     }
-    
+
+    public String getNombreTipoVaso() {
+        return nombreTipoVaso;
+    }
+
+    public void setNombreTipoVaso(String nombreTipoVaso) {
+        this.nombreTipoVaso = nombreTipoVaso;
+    }
+
+    public int getCapacidadAzucar() {
+        return capacidadAzucar;
+    }
+
+    public void setCapacidadAzucar(int capacidadAzucar) {
+        this.capacidadAzucar = capacidadAzucar;
+    }
 }
