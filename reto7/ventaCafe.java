@@ -9,12 +9,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class VentaCafe {
+public class ventaCafe {
     private static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
-    private static Cafetera cafeTecmi;
+    private static cafetera cafeTecmi;
 
     public static void main(String[] args) throws IOException {
-        cafeTecmi = new Cafetera(3000, 2000, 2000); // Ejemplo de capacidades máximas
+        cafeTecmi = new cafetera(3000, 2000, 2000); // Ejemplo de capacidades máximas
 
         boolean salir = false;
         while (!salir) {
@@ -54,7 +54,7 @@ public class VentaCafe {
         System.out.println("Importe total de venta: $" + cafeTecmi.calcularTotalVenta());
         System.out.println("Total de tazas vendidas: " + cafeTecmi.getConteoVasosCafe());
         System.out.println("Desglose detallado de las tazas vendidas:");
-        for (VasoCafe vaso : cafeTecmi.getDetalleVasosVendidos()) {
+        for (vasoCafe vaso : cafeTecmi.getDetalleVasosVendidos()) {
             System.out.println("- " + vaso.getNombreTipoVaso() + " - Precio: $" + vaso.getPrecioVaso());
         }
         System.out.println("INSUMOS SOBRANTES EN LA CAFETERA: ");

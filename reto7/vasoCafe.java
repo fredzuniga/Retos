@@ -1,6 +1,6 @@
 package reto7;
 
-public class VasoCafe{
+public class vasoCafe{
     private int capacidadAgua;
     private int capacidadCafe;
     private int capacidadAzucar;
@@ -10,9 +10,9 @@ public class VasoCafe{
     private double precioVaso;
 
     //constructor vacio
-    public VasoCafe(){}
+    public vasoCafe(){}
 
-    public VasoCafe(int capacidadAgua, int capacidadCafe, int tipoVaso, String nombreTipoVaso, boolean contieneAzucar,int capacidadAzucar, double precioVaso) {
+    public vasoCafe(int capacidadAgua, int capacidadCafe, int tipoVaso, String nombreTipoVaso, boolean contieneAzucar,int capacidadAzucar, double precioVaso) {
         this.capacidadAgua = capacidadAgua;
         this.capacidadCafe = capacidadCafe;
         this.tipoVaso = tipoVaso;

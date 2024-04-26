@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.io.IOException;
 
-public class Cafetera {
+public class cafetera {
     private BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
     private int capacidadMaximaAgua;
     private int capacidadMaximaCafe;
@@ -15,11 +15,12 @@ public class Cafetera {
     private int cantidadActualAzucar;
 
     private int conteoVasosCafe;
-    private ArrayList<VasoCafe> detalleVasosVendidos;
+    private ArrayList<vasoCafe> detalleVasosVendidos = new ArrayList<vasoCafe>();
+    private ArrayList<vasoCafe> compraActual = new ArrayList<vasoCafe>();
 
-    private VasoCafe[] tiposVasosCafetera;
+    private vasoCafe[] tiposVasosCafetera;
     
-    public Cafetera(int capacidadMaximaAgua, int capacidadMaximaCafe, int capacidadMaximaAzucar) {
+    public cafetera(int capacidadMaximaAgua, int capacidadMaximaCafe, int capacidadMaximaAzucar) {
         this.capacidadMaximaAgua = capacidadMaximaAgua;
         this.capacidadMaximaCafe = capacidadMaximaCafe;
         this.capacidadMaximaAzucar = capacidadMaximaAzucar;
@@ -29,24 +30,24 @@ public class Cafetera {
         cantidadActualAzucar = capacidadMaximaAzucar;
 
         conteoVasosCafe = 0;
-        detalleVasosVendidos = new ArrayList<VasoCafe>();
 
-        tiposVasosCafetera = new VasoCafe[6];
-        tiposVasosCafetera[0] = new VasoCafe(120, 30, 1, "Vaso de cafe pequeño sin azucar", false, 0, 10.50);
-        tiposVasosCafetera[1] = new VasoCafe(120, 30, 2, "Vaso de cafe pequeño con azucar", true, 5, 14.50);
-        tiposVasosCafetera[2] = new VasoCafe(220, 50, 3, "Vaso de cafe mediano con azucar", true, 10, 24.50);
-        tiposVasosCafetera[3] = new VasoCafe(220, 50, 4, "Vaso de cafe mediano sin azucar", false, 0, 34.50);
-        tiposVasosCafetera[4] = new VasoCafe(320, 80, 5, "Vaso de cafe grande con azucar", true, 15, 34.50);
-        tiposVasosCafetera[5] = new VasoCafe(320, 80, 6, "Vaso de cafe grande sin azucar", false, 0, 39.50);
+        tiposVasosCafetera = new vasoCafe[6];
+        tiposVasosCafetera[0] = new vasoCafe(120, 30, 1, "Vaso de cafe pequeño sin azucar", false, 0, 10.50);
+        tiposVasosCafetera[1] = new vasoCafe(120, 30, 2, "Vaso de cafe pequeño con azucar", true, 5, 14.50);
+        tiposVasosCafetera[2] = new vasoCafe(220, 50, 3, "Vaso de cafe mediano con azucar", true, 10, 24.50);
+        tiposVasosCafetera[3] = new vasoCafe(220, 50, 4, "Vaso de cafe mediano sin azucar", false, 0, 34.50);
+        tiposVasosCafetera[4] = new vasoCafe(320, 80, 5, "Vaso de cafe grande con azucar", true, 15, 34.50);
+        tiposVasosCafetera[5] = new vasoCafe(320, 80, 6, "Vaso de cafe grande sin azucar", false, 0, 39.50);
     }
     //solo se utiliza dentro de comprar()
-    public void servirTaza(VasoCafe vasoAServir){
+    public void servirTaza(vasoCafe vasoAServir){
         cantidadActualAgua -= vasoAServir.getCapacidadAgua();
         cantidadActualCafe -= vasoAServir.getCapacidadCafe();
         //restar el azucar solo si contiene azucar la taza
         if(vasoAServir.getContieneAzucar()){
             cantidadActualAzucar -= vasoAServir.getCapacidadAzucar();
         }
+        compraActual.add(vasoAServir);
         detalleVasosVendidos.add(vasoAServir);
         conteoVasosCafe++;
     }
@@ -74,14 +75,15 @@ public class Cafetera {
     }
 
     public void mostrarInsumos(){
-        System.out.println("Cantidad de agua disponible: " + cantidadActualAgua + "ml (3 litros).");
-        System.out.println("Cantidad de cafe disponible: " + cantidadActualCafe + "grs (2 kilos).");
-        System.out.println("Cantidad de azucar disponible: " + cantidadActualAzucar + "grs (2 kilos).");
+        System.out.println("Cantidad de agua disponible: " + cantidadActualAgua + "ml (3 litros maximo).");
+        System.out.println("Cantidad de cafe disponible: " + cantidadActualCafe + "grs (2 kilos maximo).");
+        System.out.println("Cantidad de azucar disponible: " + cantidadActualAzucar + "grs (2 kilos maximo).");
     }
 
     //compra de cafe
     public void comprar() throws IOException {
-        System.out.println("---MENU DE COMPRA DE CAFETECTI---");
+        compraActual.clear();
+        System.out.println("---MENU DE COMPRA DE CAFETECMI---");
         System.out.println("Bienvenido al sistema de compra de la cafetera");
         System.out.println("Indica la cantidad de vasos que vas a comprar: ");
         int cantidadTazas = Integer.parseInt(entrada.readLine());
@@ -97,7 +99,7 @@ public class Cafetera {
             int opcion = Integer.parseInt(entrada.readLine());
             
             if (opcion >= 1 && opcion <= 6) {
-                VasoCafe vaso = tiposVasosCafetera[opcion - 1];
+                vasoCafe vaso = tiposVasosCafetera[opcion - 1];
                 //si hay suficiente de cada insumo hacer la operación, si no, no hacerla
                 if (cantidadActualAgua >= vaso.getCapacidadAgua() && cantidadActualCafe >= vaso.getCapacidadCafe() && cantidadActualAzucar >= vaso.getCapacidadAzucar()) {
                     servirTaza(vaso);
@@ -110,19 +112,19 @@ public class Cafetera {
             }
         }
     }
-    // TODO: SOLUCIONAR EL PROBLEMA DE LA CUENTA QUE AGREGA LAS COMPRAS ANTERIORES EN LAS NUEVAS
+
     //realizar el calculo del cambio que se hara al usuario una vez comprado
     public void cambioPago() throws IOException {
         // Mostrar la cuenta detallada de los vasos de café vendidos
         System.out.println("\n---CUENTA SENCILLA DE SU PEDIDO---");
-        for (int i = 0; i < detalleVasosVendidos.size(); i++) {
-            VasoCafe vaso = detalleVasosVendidos.get(i);
+        for (int i = 0; i < compraActual.size(); i++) {
+            vasoCafe vaso = compraActual.get(i);
             System.out.println("Taza " + (i + 1) + ": " + vaso.getNombreTipoVaso() + " - Precio: $" + vaso.getPrecioVaso());
         }
         
         // Calcular el total a pagar
         double totalPagar = 0;
-        for (VasoCafe vaso : detalleVasosVendidos) {
+        for (vasoCafe vaso : compraActual) {
             totalPagar += vaso.getPrecioVaso();
         }
         System.out.println("Total a pagar: $" + totalPagar);
@@ -171,11 +173,12 @@ public class Cafetera {
     //sumar el total de dinero recogido de las ventas para el reporte final
     public double calcularTotalVenta() {
         double totalVenta = 0;
-        for (VasoCafe vaso : detalleVasosVendidos) {
+        for (vasoCafe vaso : detalleVasosVendidos) {
             totalVenta += vaso.getPrecioVaso();
         }
         return totalVenta;
     }
+    
     /*
      * Getters y setters
      */
@@ -235,11 +238,11 @@ public class Cafetera {
         this.conteoVasosCafe = conteoVasosCafe;
     }
 
-    public ArrayList<VasoCafe> getDetalleVasosVendidos() {
+    public ArrayList<vasoCafe> getDetalleVasosVendidos() {
         return detalleVasosVendidos;
     }
 
-    public void setDetalleVasosVendidos(ArrayList<VasoCafe> detalleVasosVendidos) {
+    public void setDetalleVasosVendidos(ArrayList<vasoCafe> detalleVasosVendidos) {
         this.detalleVasosVendidos = detalleVasosVendidos;
     }
     
