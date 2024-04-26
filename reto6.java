@@ -42,7 +42,7 @@ class SistemaNomina{
     }
 
     public void registrarEmpleados() throws IOException{        
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < listaEmpleados.length; i++){
             System.out.println("-----Captura de datos por empleado-----");
             System.out.println("\nIndica el nombre del empleado: ");
             String nombre = entrada.readLine();
@@ -52,13 +52,6 @@ class SistemaNomina{
 
             System.out.println("El empleado trabajo horas extra? Si es asi especifique cuantas, si no escriba 0: ");
             int horasTrabajadasExtra = Integer.parseInt(entrada.readLine());
-            //Si hay horas extra entonces se aumenta la cantidad de empleados con horas extra, si no entonces la cantidad de empleados sin horas extra
-            if (horasTrabajadasExtra != 0){
-                personasConHorasExtra ++;
-            }
-            else{
-                personasSinHorasExtra ++;
-            }
 
             System.out.println("Escribe el telefono del empleado: ");
             String telefono = entrada.readLine();
@@ -82,8 +75,10 @@ class SistemaNomina{
     //metodo de calculo de nomina
     public void calcularNomina() throws IOException{
         //Calculo y generacion de reporte
+
         double totalNominaEmpresa = 0.0;    //totales
-        double sueldoAPagar = 0.0;    //individual
+        //acceder a el sueldo a pagar de cada uno de los empleados
+        double[] sueldoAPagar = new double[listaEmpleados.length];    //individual
         double sueldoHorasExtra;    //individual
 
         int sumaHorasLaboradas = 0; //totales (numero real)
@@ -91,10 +86,10 @@ class SistemaNomina{
         int sumaHorasExtra = 0; //totales (numero real)
         double totalHorasExtra = 0.0;   //totales (dinero)
 
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < listaEmpleados.length; i++){
             Empleado empleado = listaEmpleados[i];
             //entrar a categoria y devolver el sueldo base, horasTrabajadas se convierte en double
-            sueldoAPagar = (double)empleado.getHorasTrabajadas() * empleado.getCategoria().getSueldoBase();
+            sueldoAPagar[i] = (double)empleado.getHorasTrabajadas() * empleado.getCategoria().getSueldoBase();
 
             //calculo del sueldo por horas extra del empleado
             sueldoHorasExtra = (double)empleado.getHorasTrabajadasExtra() * empleado.getCategoria().getPagoHoraExtra();
@@ -103,7 +98,7 @@ class SistemaNomina{
             sumaHorasLaboradas =  sumaHorasLaboradas + empleado.getHorasTrabajadas();
 
             //suma de la cantidad a pagar en total por cada trabajador (sin contar horas extra)
-            totalHorasTrabajadas = totalHorasTrabajadas + sueldoAPagar;
+            totalHorasTrabajadas = totalHorasTrabajadas + sueldoAPagar[i];
 
             //suma de todas las horas extra laboradas entre los trabajadores
             sumaHorasExtra = sumaHorasExtra + empleado.getHorasTrabajadasExtra();
@@ -112,22 +107,32 @@ class SistemaNomina{
             totalHorasExtra = totalHorasExtra + sueldoHorasExtra;
 
             //calculo del total de nomina de la empresa
-            totalNominaEmpresa = sueldoAPagar + sueldoHorasExtra + totalNominaEmpresa;
+            totalNominaEmpresa = sueldoAPagar[i] + sueldoHorasExtra + totalNominaEmpresa;
 
-            //! Impresion de los datos
+            //comprobacion de horasTrabajadasExtra
+            if (empleado.getHorasTrabajadasExtra() > 0){
+                personasConHorasExtra ++;
+            }
+            else{
+                personasSinHorasExtra ++;
+            }
+
+        }
+        //! Impresion de los datos
             //seccion por empleado
             System.out.println("-----Reporte de nomina por empleado-----");
             System.out.println("Cantidad de empleados: " + listaEmpleados.length);
             System.out.println("Datos de los empleados: \n");
-            for(int e = 0; e < 5; e ++){
-                System.out.println(e+1 + ".- " + empleado.getNombre() + " - Categoria: " + empleado.getCategoria().getNombreCategoria());
-                System.out.println("Sueldo base: $" + empleado.getCategoria().getSueldoBase());
-                System.out.println("Horas trabajadas: " + empleado.getHorasTrabajadas());
-                System.out.println("Horas extras: " + empleado.getHorasTrabajadasExtra());
-                System.out.println("Pago neto: $" + sueldoAPagar + "\n");
+            //Imprimir los datos de cada empleado
+            for(int e = 0; e < listaEmpleados.length; e ++){
+                //listaEmpleados[e] para encontrar los datos de cada empleado dentro de la lista que se creó
+                System.out.println((e + 1) + ".- " + listaEmpleados[e].getNombre() + " - Categoria: " + listaEmpleados[e].getCategoria().getNombreCategoria());
+                System.out.println("Sueldo base: $" + listaEmpleados[e].getCategoria().getSueldoBase());
+                System.out.println("Horas trabajadas: " + listaEmpleados[e].getHorasTrabajadas());
+                System.out.println("Horas extras: " + listaEmpleados[e].getHorasTrabajadasExtra());
+                System.out.println("Pago neto: $" + sueldoAPagar[e] + "\n");
             }
-        }
-        
+
         //seccion general de la empresa
         System.out.println("-----Reporte de nomina de la empresa-----");
         System.out.println("Pago total nomina: $" + totalNominaEmpresa);
@@ -137,7 +142,7 @@ class SistemaNomina{
         System.out.println("Total de empleados sin horas extras: " + personasSinHorasExtra);
         System.out.println("Total de horas extras laboradas: " + sumaHorasExtra + " horas.");
         System.out.println("-----Fin del programa, muchas gracias por utilizar este programa!-----");
-        System.out.println("-----Version 1.2.1-----");
+        System.out.println("-----Version 1.3.3-----");
     }
 }
 /*public class SistemaNomina{
