@@ -39,7 +39,7 @@ public class Cafetera {
         tiposVasosCafetera[4] = new VasoCafe(320, 80, 5, "Vaso de cafe grande con azucar", true, 15, 34.50);
         tiposVasosCafetera[5] = new VasoCafe(320, 80, 6, "Vaso de cafe grande sin azucar", false, 0, 39.50);
     }
-
+    //solo se utiliza dentro de comprar()
     public void servirTaza(VasoCafe vasoAServir){
         cantidadActualAgua -= vasoAServir.getCapacidadAgua();
         cantidadActualCafe -= vasoAServir.getCapacidadCafe();
@@ -53,7 +53,6 @@ public class Cafetera {
     public void agregarCafe() throws IOException {
         System.out.println("Indique la cantidad de café a agregar: ");
         int cantidadAgregarCafe = Integer.parseInt(entrada.readLine());
-        
         int sumaCafe = cantidadActualCafe + cantidadAgregarCafe;
         
         if (sumaCafe > capacidadMaximaCafe) {
@@ -65,26 +64,7 @@ public class Cafetera {
             System.out.println("Cantidad actual de café: " + cantidadActualCafe + " gramos.");
         }
     }
-    /*
-    //agregar cafe dependiendo de cuanto quiera agregar
-    public void agregarCafe(int cantidadAgregarCafe) throws IOException{
-        int sumaCafe = cantidadActualCafe + cantidadAgregarCafe;
-        if(cantidadActualCafe == capacidadMaximaCafe){
-            System.out.println("No se puede agregar mas cafe --> cafetera llena");
-        }
-        else{
-            System.out.println("Indique la cantidad de cafe a agregar: ");
-            cantidadAgregarCafe = Integer.parseInt(entrada.readLine());
-            
-            if(sumaCafe > capacidadMaximaCafe){
-                System.out.println("No se puede agregar mas cafe --> se desborda la cafetera");
-                System.out.println("Solo se puede agregar: " + (capacidadMaximaCafe - sumaCafe));
-            }
-            cantidadActualCafe += cantidadAgregarCafe;
-            System.out.println("Cantidad actual: " + cantidadActualCafe + " gramos");
-        }
-    }
-    */
+    
     //limpieza de maquina
     public void vaciarInsumos(){
         cantidadActualAgua = 0;
@@ -94,19 +74,20 @@ public class Cafetera {
     }
 
     public void mostrarInsumos(){
-        System.out.println("Cantidad de agua disponible: " + cantidadActualAgua);
-        System.out.println("Cantidad de cafe disponible: " + cantidadActualCafe);
-        System.out.println("Cantidad de azucar disponible: " + cantidadActualAzucar);
+        System.out.println("Cantidad de agua disponible: " + cantidadActualAgua + "ml (3 litros).");
+        System.out.println("Cantidad de cafe disponible: " + cantidadActualCafe + "grs (2 kilos).");
+        System.out.println("Cantidad de azucar disponible: " + cantidadActualAzucar + "grs (2 kilos).");
     }
 
     //compra de cafe
     public void comprar() throws IOException {
-        System.out.println("Bienvenido al sistema de cafetera");
+        System.out.println("---MENU DE COMPRA DE CAFETECTI---");
+        System.out.println("Bienvenido al sistema de compra de la cafetera");
         System.out.println("Indica la cantidad de vasos que vas a comprar: ");
         int cantidadTazas = Integer.parseInt(entrada.readLine());
         
         for (int i = 0; i < cantidadTazas; i++) {
-            System.out.println("Elige el tipo de vaso de café a comprar: ");
+            System.out.println("\nElige el tipo de vaso de café a comprar (1-6): ");
             System.out.println(tiposVasosCafetera[0].getTipoVaso() +".- " + tiposVasosCafetera[0].getNombreTipoVaso() + " - Precio: $"+ tiposVasosCafetera[0].getPrecioVaso());
             System.out.println(tiposVasosCafetera[1].getTipoVaso() +".- " + tiposVasosCafetera[1].getNombreTipoVaso() + " - Precio: $" + tiposVasosCafetera[1].getPrecioVaso());
             System.out.println(tiposVasosCafetera[2].getTipoVaso() +".- " + tiposVasosCafetera[2].getNombreTipoVaso() + " - Precio: $"+ tiposVasosCafetera[2].getPrecioVaso());
@@ -120,7 +101,7 @@ public class Cafetera {
                 //si hay suficiente de cada insumo hacer la operación, si no, no hacerla
                 if (cantidadActualAgua >= vaso.getCapacidadAgua() && cantidadActualCafe >= vaso.getCapacidadCafe() && cantidadActualAzucar >= vaso.getCapacidadAzucar()) {
                     servirTaza(vaso);
-                    System.out.println("Taza de café servida: " + vaso.getNombreTipoVaso());
+                    System.out.println("Taza de café servida: " + vaso.getNombreTipoVaso() + "\n");
                 } else {
                     System.out.println("Lo siento, no hay suficientes ingredientes para servir esta taza de café.");
                 }
@@ -129,11 +110,11 @@ public class Cafetera {
             }
         }
     }
-
+    // TODO: SOLUCIONAR EL PROBLEMA DE LA CUENTA QUE AGREGA LAS COMPRAS ANTERIORES EN LAS NUEVAS
     //realizar el calculo del cambio que se hara al usuario una vez comprado
     public void cambioPago() throws IOException {
         // Mostrar la cuenta detallada de los vasos de café vendidos
-        System.out.println("Cuenta detallada:");
+        System.out.println("\n---CUENTA SENCILLA DE SU PEDIDO---");
         for (int i = 0; i < detalleVasosVendidos.size(); i++) {
             VasoCafe vaso = detalleVasosVendidos.get(i);
             System.out.println("Taza " + (i + 1) + ": " + vaso.getNombreTipoVaso() + " - Precio: $" + vaso.getPrecioVaso());
@@ -147,23 +128,28 @@ public class Cafetera {
         System.out.println("Total a pagar: $" + totalPagar);
         
         // Solicitar al usuario que ingrese la cantidad de dinero pagada
-        System.out.println("Ingrese la cantidad de dinero pagada por el cliente: ");
+        System.out.println("CON CUANTO DINERO VA A PAGAR?");
         double montoPagado = Double.parseDouble(entrada.readLine());
+
+        // Convertir a centavos para evitar errores
+        int totalPagarCentavos = (int) (totalPagar * 100);
+        int montoPagadoCentavos = (int) (montoPagado * 100);
         
         // Verificar si el monto pagado es suficiente
-        if (verificarPagoSuficiente(montoPagado, totalPagar)) {
+        if (montoPagadoCentavos >= totalPagarCentavos) {
             // Calcular el cambio
-            double cambio = montoPagado - totalPagar;
-            System.out.println("Cambio a devolver: $" + cambio);
-    
+            int cambioCentavos = montoPagadoCentavos - totalPagarCentavos;
+            //conversor de centavos a pesos
+            System.out.println("Cambio a devolver: $" + cambioCentavos / 100.0);
+
             // Calcular cantidad de monedas de cada denominación
-            int[] denominaciones = {10, 5, 2, 1, 0}; // 0 para representar los 50 centavos
+            int[] denominaciones = {1000, 500, 200, 100, 50}; // centavos
             int[] cantidadMonedas = new int[5];
             
             for (int i = 0; i < denominaciones.length; i++) {
-                if (cambio >= denominaciones[i]) {
-                    cantidadMonedas[i] = (int) (cambio / denominaciones[i]);
-                    cambio -= cantidadMonedas[i] * denominaciones[i];
+                if (cambioCentavos >= denominaciones[i]) {
+                    cantidadMonedas[i] = cambioCentavos / denominaciones[i];
+                    cambioCentavos -= cantidadMonedas[i] * denominaciones[i];
                 }
             }
             
@@ -172,6 +158,7 @@ public class Cafetera {
             for (int i = 0; i < denominaciones.length; i++) {
                 System.out.println("Cantidad de monedas de " + nombresDenominaciones[i] + ": " + cantidadMonedas[i]);
             }
+            System.out.println("GRACIAS POR COMPRAR EN CAFETECMI \n");
         } else {
             System.out.println("Lo siento, el monto pagado es insuficiente. Se necesita pagar $" + totalPagar);
         }
@@ -180,7 +167,15 @@ public class Cafetera {
     public boolean verificarPagoSuficiente(double montoPagado, double totalPagar) {
         return montoPagado >= totalPagar;
     }
-    
+
+    //sumar el total de dinero recogido de las ventas para el reporte final
+    public double calcularTotalVenta() {
+        double totalVenta = 0;
+        for (VasoCafe vaso : detalleVasosVendidos) {
+            totalVenta += vaso.getPrecioVaso();
+        }
+        return totalVenta;
+    }
     /*
      * Getters y setters
      */
