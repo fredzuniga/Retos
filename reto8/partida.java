@@ -25,6 +25,7 @@ public class partida {
     }
 
     public void registrarDatos(){
+        //TODO: REALIZAR EL PEDIDO DE DATOS
         //pedir datos de los usuarios
         System.out.println("Registro de datos ");
     }
