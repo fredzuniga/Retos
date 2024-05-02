@@ -5,6 +5,25 @@
  */
 package reto8;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Date;
+
 public class giraCarta extends partida{
-    
+    public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
+    public giraCarta() throws IOException{
+        super();
+        setTipoPartida(3);
+        iniciarJuego();
+    }
+    public giraCarta(String nombre, String correo, String telefono, Date fechaNacimiento, int tipoPartida, boolean estatusPartida) throws IOException{
+        super(nombre, correo, telefono, fechaNacimiento, tipoPartida, estatusPartida);
+        iniciarJuego();
+    }
+
+    public void iniciarJuego(){
+        this.estatusPartida = false;
+        
+    }
 }

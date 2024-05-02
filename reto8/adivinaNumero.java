@@ -13,6 +13,7 @@ public class adivinaNumero extends partida {
     public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
     public adivinaNumero() throws IOException{
         super();
+        setTipoPartida(1);
         iniciarJuego();
     }
     public adivinaNumero(String nombre, String correo, String telefono, Date fechaNacimiento, int tipoPartida, boolean estatusPartida) throws IOException{
@@ -22,8 +23,9 @@ public class adivinaNumero extends partida {
     public void iniciarJuego() throws IOException{
         this.estatusPartida = false;    //significa que aun no se inicia el juego
         Random random = new Random();
-        int numeroAleatorio = random.nextInt(10) + 1;
+        int numeroAleatorio = random.nextInt(9) + 1;
         int intentos = 3;
+        System.out.println("Juego numero: " + getTipoPartida());
         System.out.println("Bienvenido a adivina un numero!");
         while (intentos > 0) {
             System.out.println("Adivina un numero del 1 al 10: ");
@@ -49,6 +51,7 @@ public class adivinaNumero extends partida {
                 estatusPartida = false; //se perdió el juego
             }
         }
+        //mensaje de fin al perder
         System.out.println("Lo sentimos, se agotaron tus intentos:( El numero era: " + numeroAleatorio);
     }
 }

@@ -1,33 +1,47 @@
 package reto8;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Date;
 
+
 public class partida {
+    
     private String nombre;
     private String correo;
     private String telefono;
     private Date fechaNacimiento;
     private int tipoPartida;
     protected boolean estatusPartida; //ganar o perder
+    private BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
-    public partida(){
+    public partida() throws IOException{
         registrarDatos();
     }
 
     public partida(String nombre, String correo, String telefono, Date fechaNacimiento, int tipoPartida,
-            boolean estatusPartida) {
+            boolean estatusPartida) throws IOException {
         this.nombre = nombre;
         this.correo = correo;
         this.telefono = telefono;
         this.fechaNacimiento = fechaNacimiento;
         this.tipoPartida = tipoPartida;
         this.estatusPartida = estatusPartida;
+        registrarDatos();
     }
 
-    public void registrarDatos(){
-        //TODO: REALIZAR EL PEDIDO DE DATOS
-        //pedir datos de los usuarios
-        System.out.println("Registro de datos ");
+    public void registrarDatos() throws IOException{
+        /*//pedir datos de los usuarios
+        System.out.println("-----REGISTRO DE DATOS-----");
+        System.out.println("Ingresa tu nombre: ");
+        nombre = entrada.readLine();
+        System.out.println("Indica tu correo electronico: ");
+        correo = entrada.readLine();
+        System.out.println("Indica tu telefono: ");
+        telefono = entrada.readLine();
+        System.out.println("Escribe tu fecha de nacimiento: ");
+        //fechaNacimiento = entrada.readLine();*/
     }
 
     public String getNombre() {
