@@ -1,8 +1,6 @@
 package reto8;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Date;
 
 
@@ -14,7 +12,6 @@ public class partida {
     private Date fechaNacimiento;
     private int tipoPartida;
     protected boolean estatusPartida; //ganar o perder
-    private BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
 
     public partida() throws IOException{
         registrarDatos();
