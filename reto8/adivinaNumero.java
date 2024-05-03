@@ -26,6 +26,7 @@ public class adivinaNumero extends partida {
         int numeroAleatorio = random.nextInt(9) + 1;
         int intentos = 3;
         System.out.println("Juego numero: " + getTipoPartida());
+        System.out.println("-----ADIVINA NUMERO-----");
         System.out.println("Bienvenido a adivina un numero!");
         while (intentos > 0) {
             System.out.println("Adivina un numero del 1 al 10: ");
@@ -41,6 +42,7 @@ public class adivinaNumero extends partida {
                 //intentos ++ para evitar que salga el texto de "lo sentimos se agotaron los intentos"
                 intentos ++;
                 System.out.println("FELICIDADES! ADIVINASTE EL NUMERO");
+                System.out.println("Gracias por participar");
                 estatusPartida = true;  //como se ganó el juego es true, para contabilizar cuantos trues hay
                 break;
             }
@@ -52,6 +54,6 @@ public class adivinaNumero extends partida {
             }
         }
         //mensaje de fin al perder
-        System.out.println("Lo sentimos, se agotaron tus intentos:( El numero era: " + numeroAleatorio);
+        System.out.println("Lo sentimos, se agotaron tus intentos:( El numero era: " + numeroAleatorio + "\n");
     }
 }

@@ -56,6 +56,7 @@ public class encuentraCarita extends partida{
 
         if(posicionCaritaFila == filaSeleccionada && posicionCaritaColumna == columnaSeleccionada){
             System.out.println("FELICIDADES! GANASTE EL JUEGO");
+            System.out.println("Gracias por participar");
             for(int f = 0; f < 3; f ++){
                 for(int c = 0; c < 3; c ++){
                     System.out.print(matriz[f][c]);
@@ -80,7 +81,7 @@ public class encuentraCarita extends partida{
             //!si el valor introducido no esta en la posicion [0] a [2] del vector entonces no se escribio un numero entre el 1 y 3
             if(filaSeleccionada < 0 || filaSeleccionada > 2 || columnaSeleccionada < 0 || columnaSeleccionada > 2){
                 System.out.println("RAZON DE PERDIDA:");
-                System.out.println("Debiste escribir un numero entre el 1 y el 3");
+                System.out.println("Debiste escribir un numero entre el 1 y el 3 \n");
             }
             estatusPartida = false;
         }
