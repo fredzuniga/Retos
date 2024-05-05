@@ -68,6 +68,7 @@ public class giraCarta extends partida{
                 System.out.println("RAZON DE PERDIDA: ");
                 System.out.println("Debiste escribir un numero entre el 1 y el 5 \n");
             }
+            estatusPartida = false;
         }
     }
 }

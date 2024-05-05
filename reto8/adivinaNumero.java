@@ -34,26 +34,28 @@ public class adivinaNumero extends partida {
 
             if (intentoUsuario < 1 || intentoUsuario > 10){
                 System.out.println("El numero tiene que estar entre el 1 y el 10 :(");
-                intentos--;
+                intentos --;
                 System.out.println("Te quedan: " + intentos + " intentos.");
             }
+
             //victoria
             if(intentoUsuario == numeroAleatorio){
                 //intentos ++ para evitar que salga el texto de "lo sentimos se agotaron los intentos"
                 intentos ++;
                 System.out.println("FELICIDADES! ADIVINASTE EL NUMERO");
-                System.out.println("Gracias por participar");
+                System.out.println("Gracias por participar \n");
                 estatusPartida = true;  //como se ganó el juego es true, para contabilizar cuantos trues hay
-                break;
+                intentos = 0;
             }
-            //cuando perdemos en el juego
+
             else{
                 intentos--;
                 System.out.println("FALLASTE ! todavia te quedan: " + intentos + " intentos.");
-                estatusPartida = false; //se perdió el juego
             }
         }
-        //mensaje de fin al perder
-        System.out.println("Lo sentimos, se agotaron tus intentos:( El numero era: " + numeroAleatorio + "\n");
+            if(estatusPartida == false){
+                System.out.println("Lo sentimos, se agotaron tus intentos:( El numero era: " + numeroAleatorio + "\n");
+                estatusPartida = false; //se perdió el juego
+        }
     }
 }

@@ -10,6 +10,8 @@ public class reto8 {
     public static void main(String[] args) throws IOException{
         int juegoSeleccionado;
         ArrayList<partida> partidas = new ArrayList<partida>();
+        //arraylist que guarda los datos de cada jugador dentro del programa
+        ArrayList<partida> jugadores = new ArrayList<partida>();
         partida juego = null;
         for(int i = 0; i < 10; i ++){
             System.out.println("Cliente No." + (i + 1));
@@ -22,9 +24,20 @@ public class reto8 {
                 case 3-> juego = new giraCarta();
                 default -> System.out.println("Escribe un numero valido.");
             }
-            //juego.registrarDatos();
-            System.out.println(juego.isEstatusPartida());
+            //System.out.println(juego.isEstatusPartida());
             partidas.add(juego);
+        }
+        System.out.println("-----REPORTE FINAL-----");
+        for(int i = 0; i < 10; i++){
+            System.out.println("Cliente No. " + (i + 1));
+            System.out.println("Nombre: " + juego.getNombre());
+            System.out.println("Tipo de juego que jugo: " + juego.getTipoPartida());
+            if (juego.estatusPartida == true){
+                System.out.println("Estatus de partida: Partida ganada");
+            }
+            else{
+                System.out.println("Estatus de partida: Partida perdida");
+            }
         }
     }
 }
