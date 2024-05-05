@@ -9,7 +9,6 @@ public class reto8 {
     public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws IOException{
         int juegoSeleccionado;
-        ArrayList<partida> partidas = new ArrayList<partida>();
         //arraylist que guarda los datos de cada jugador dentro del programa
         ArrayList<partida> jugadores = new ArrayList<partida>();
         partida juego = null;
@@ -25,14 +24,14 @@ public class reto8 {
                 default -> System.out.println("Escribe un numero valido.");
             }
             //System.out.println(juego.isEstatusPartida());
-            partidas.add(juego);
+            jugadores.add(juego);
         }
         System.out.println("-----REPORTE FINAL-----");
         for(int i = 0; i < 10; i++){
             System.out.println("Cliente No. " + (i + 1));
-            System.out.println("Nombre: " + juego.getNombre());
-            System.out.println("Tipo de juego que jugo: " + juego.getTipoPartida());
-            if (juego.estatusPartida == true){
+            System.out.println("Nombre: " + jugadores.get(i).getNombre());
+            System.out.println("Tipo de juego que jugo: " + jugadores.get(i).getTipoPartida());
+            if (jugadores.get(i).estatusPartida == true){
                 System.out.println("Estatus de partida: Partida ganada");
             }
             else{
