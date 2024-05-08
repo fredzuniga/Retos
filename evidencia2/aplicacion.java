@@ -29,6 +29,6 @@ public class aplicacion {
             }
             break;
         }
-        System.out.println("");
+        System.out.println("-----GRACIAS POR USAR ESTE PROGRAMA!-----");
     }
 }
