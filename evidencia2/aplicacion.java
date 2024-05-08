@@ -10,24 +10,23 @@ public class aplicacion {
         System.out.println("-----SPOTIFY FOR JAVA-----");
         System.out.println("Elige una opcion para entrar: \nA. Agregar playlist \nB. Reproducir musica \nC. Terminar aplicacion");
         char opcion = entrada.readLine().charAt(0);
-        playlist accion = new playlist();
+        playlist ejecutar = new playlist();
         while (opcion != 'C' || opcion != 'c'){
             switch (opcion){
                 case ('A')-> {
-                    accion.agregarPlaylist();
+                    ejecutar.agregarPlaylist();
                 }
                 case ('a')-> {
-                    accion.agregarPlaylist();
+                    ejecutar.agregarPlaylist();
                 }
                 case('B')-> {
-                    accion.reproducirMusica();
+                    ejecutar.reproducirPlaylist();
                 }
                 case('b')->{
-                    accion.reproducirMusica();
+                    ejecutar.reproducirPlaylist();
                 }
                 default-> System.out.println("Escribe una letra valida");
             }
-            break;
         }
         System.out.println("-----GRACIAS POR USAR ESTE PROGRAMA!-----");
     }

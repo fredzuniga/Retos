@@ -29,16 +29,21 @@ public class playlist {
         nombrePlaylist = entrada.readLine();
         System.out.println("Ahora escribe el numero de canciones que se van a agregar");
         numeroCanciones = Integer.parseInt(entrada.readLine());
+        
+        //clave generada con crearClave()
         System.out.println("La clave de tu playlist es: ");
         clavePlaylist = crearClave(nombrePlaylist);
         System.out.println(clavePlaylist);
     }
 
+    //tomar un string y devolver su clave con la primer letra de las palabras
     public static String crearClave(String nombrePlaylist){
         StringBuilder clave = new StringBuilder();
-        String[] palabras = nombrePlaylist.split("\\s+");
+        String[] palabras = nombrePlaylist.split("\\s+");   //\\s+ significa "por cada espacio en blanco"
 
+        //cada palabra dentro del array palabras[]
         for (String palabra : palabras) {
+            //evitar caracteres adicionales por espacios consecutivos
             if(!palabra.isEmpty()){
                 clave.append(palabra.charAt(0));
             }
@@ -46,7 +51,7 @@ public class playlist {
         return clave.toString();
     }
 
-    public void reproducirMusica(){
+    public void reproducirPlaylist(){
         
     }
 
