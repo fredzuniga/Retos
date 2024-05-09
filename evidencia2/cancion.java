@@ -1,19 +1,22 @@
 package evidencia2;
 
-public class cancion {
-    String nombreCancion;
-    double duracion;
-    String generoMusical;
-    String nombreCantante;
-    String autores;
+import java.util.ArrayList;
 
-    public cancion(String nombreCancion, double duracion, String generoMusical, String nombreCantante, String autores) {
+public class cancion {
+    private String nombreCancion;
+    private String duracion;
+    private generoMusical generoMusical;
+    private String nombreCantante;
+    private ArrayList<String> autores = new ArrayList<String>();
+
+    public cancion(String nombreCancion, String duracion, generoMusical generoMusical, String nombreCantante) {
         this.nombreCancion = nombreCancion;
         this.duracion = duracion;
         this.generoMusical = generoMusical;
         this.nombreCantante = nombreCantante;
-        this.autores = autores;
     }
+
+    public cancion(){}
 
     public String getNombreCancion() {
         return nombreCancion;
@@ -23,19 +26,19 @@ public class cancion {
         this.nombreCancion = nombreCancion;
     }
 
-    public double getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(double duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 
-    public String getGeneroMusical() {
+    public generoMusical getGeneroMusical() {
         return generoMusical;
     }
 
-    public void setGeneroMusical(String generoMusical) {
+    public void setGeneroMusical(generoMusical generoMusical) {
         this.generoMusical = generoMusical;
     }
 
@@ -46,13 +49,4 @@ public class cancion {
     public void setNombreCantante(String nombreCantante) {
         this.nombreCantante = nombreCantante;
     }
-
-    public String getAutores() {
-        return autores;
-    }
-
-    public void setAutores(String autores) {
-        this.autores = autores;
-    }
-
 }

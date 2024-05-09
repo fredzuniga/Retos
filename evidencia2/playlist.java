@@ -3,22 +3,22 @@ package evidencia2;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Date;
 import java.lang.StringBuilder;
 
 public class playlist {
     public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
     
-    int numeroCanciones;
-    Date fechaRegistro;
-    String nombrePlaylist;
-    String clavePlaylist;
+    private int numeroCanciones;
+    private Date fechaRegistro;
+    private String nombrePlaylist;
+    private String clavePlaylist;
+    private ArrayList<cancion> listaCanciones = new ArrayList<cancion>();
 
-    public playlist(int numeroCanciones, Date fechaRegistro, String nombrePlaylist, String clavePlaylist){
-        this.numeroCanciones = numeroCanciones;
-        this.fechaRegistro = fechaRegistro;
+    public playlist(String nombrePlaylist){
         this.nombrePlaylist = nombrePlaylist;
-        this.clavePlaylist = clavePlaylist;
+        this.clavePlaylist = crearClave(nombrePlaylist);
     }
 
     //constructor vacio
@@ -36,10 +36,15 @@ public class playlist {
         System.out.println(clavePlaylist);
     }
 
+    public void agregarCancion(cancion cancion){
+        listaCanciones.add(cancion);
+        numeroCanciones = listaCanciones.size();
+    }   
+    
     //tomar un string y devolver su clave con la primer letra de las palabras
     public static String crearClave(String nombrePlaylist){
         StringBuilder clave = new StringBuilder();
-        String[] palabras = nombrePlaylist.split("\\s+");   //\\s+ significa "por cada espacio en blanco"
+        String[] palabras = nombrePlaylist.split("\\s+");   // !\\s+ significa "por cada espacio en blanco"
 
         //cada palabra dentro del array palabras[]
         for (String palabra : palabras) {
@@ -48,14 +53,18 @@ public class playlist {
                 clave.append(palabra.charAt(0));
             }
         }
-        return clave.toString();
+        return clave.toString().toUpperCase();  //devolver en mayusculas
     }
 
-    public void reproducirPlaylist(){
-        
+    public void reproducirPlaylist() throws IOException{
+        System.out.println("Escribe el codigo de identificacion de la playlist: ");
+        String codigoEscrito = entrada.readLine();
+
     }
 
+    //mostrar el contenido de la playlist
     public int getNumeroCanciones() {
+        numeroCanciones = listaCanciones.size();
         return numeroCanciones;
     }
 
