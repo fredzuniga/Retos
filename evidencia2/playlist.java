@@ -26,7 +26,7 @@ public class playlist {
     //constructor vacio
     public playlist(){}
 
-    public void agregarPlaylist() throws IOException{
+    public void agregarPlaylist(ArrayList<generoMusical> generos) throws IOException{
         System.out.println("Escribe el nombre de tu playlist: ");
         nombrePlaylist = entrada.readLine();
         System.out.println("Ahora escribe el numero de canciones que se van a agregar");
@@ -35,28 +35,40 @@ public class playlist {
         //clave generada con crearClave()
         System.out.println("La clave de tu playlist es: ");
         clavePlaylist = crearClave(nombrePlaylist);
-        System.out.println(clavePlaylist);
+        System.out.println(clavePlaylist + "\n");
 
+        System.out.println("-----AGREGAR CANCIONES-----");
         cancion cancion = new cancion();
-
         for(int i = 0; i < numeroCanciones; i++){
             System.out.println("Cancion numero " + (i + 1));
             System.out.println("Escribe el nombre de tu cancion: ");
             cancion.setNombreCancion(entrada.readLine());
             System.out.println("Escribe la duracion de la cancion: ");
             cancion.setDuracion(entrada.readLine());
-            System.out.println("Escribe el genero musical de la cancion: ");
-            cancion.setGeneroMusical(new generoMusical(entrada.readLine()));
+            System.out.println("Escoge el genero musical de la cancion: ");
+            for (generoMusical generoMusical : generos) {
+                System.out.println(generoMusical.getClaveGeneroMusical() + ": " + generoMusical.getNombreGeneroMusical());
+            }
+            String claveEscrita = entrada.readLine();
+            for(int k = 0; k < generos.size(); k++){
+                if(generos.get(k).getClaveGeneroMusical() == claveEscrita){
+                    cancion.setGeneroMusical(generos.get(k));
+                }
+            }
             System.out.println("Escribe el nombre del cantante (o los cantantes): ");
             cancion.setNombreCantante(entrada.readLine());
-            System.out.println("Escribe el nombre de los autores: ");
-            ArrayList<String> x = new ArrayList<String>();
-            
+            System.out.println("Escribe cuantos autores tiene la cancion: ");
+            int numAutores = Integer.parseInt(entrada.readLine());
+
+            ArrayList<String> nombreAutores = new ArrayList<String>();
+            for(int e = 0; e < numAutores; e++){
+                System.out.println("Escribe el nombre del autor numero " + (e + 1) + ": ");
+                nombreAutores.add(entrada.readLine());
+            }
+            cancion.setAutores(nombreAutores);
         }
         listaCanciones.add(cancion);
         numeroCanciones = listaCanciones.size();
-        //TODO: CREAR UN CATALOGO DE GENEROS MUSICALES
-
     } 
 
     public void agregarCancion(cancion cancion) throws IOException{

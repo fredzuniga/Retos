@@ -10,10 +10,12 @@ public class aplicacion {
     public static void main(String[] args) throws IOException {
         playlist ejecutar = new playlist();
         ArrayList<playlist> listaPlaylists = new ArrayList<playlist>();
+        ArrayList<generoMusical> generos = new ArrayList<generoMusical>();
 
         // ! playlist precargadas
         playlist corridosTumbados = new playlist("Corridos Tumbados");
         generoMusical corridosTumbadosGenero = new generoMusical("Corridos Tumbados");
+        generos.add(corridosTumbadosGenero);
         corridosTumbados.agregarCancion(new cancion("El de la codeina", "2:09", corridosTumbadosGenero, "Natanael Cano"));
         corridosTumbados.agregarCancion(new cancion("Y LLORO", "2:59", corridosTumbadosGenero, "Junior H"));
         corridosTumbados.agregarCancion(new cancion("LADY GAGA", "3:32", corridosTumbadosGenero, "Peso Pluma, Gabito Ballesteros, Junior H"));
@@ -23,12 +25,20 @@ public class aplicacion {
         
         playlist rapPlaylist = new playlist("Rap Y Hip-hop");
         generoMusical rapGenero = new generoMusical("Rap Y Hip-hop");
+        generos.add(rapGenero);
         rapPlaylist.agregarCancion(new cancion("CARNIVAL", "4:24", rapGenero, "¥$, Kanye West, Ty Dolla $ign, Rich The Kid, Playboi Carti"));
         rapPlaylist.agregarCancion(new cancion("euphoria", "6:23", rapGenero, "Kendrick Lamar"));
         rapPlaylist.agregarCancion(new cancion("Type Shit", "3:48", rapGenero, "Future, Metro Boomin, Travis Scott, Playboi Carti"));
         rapPlaylist.agregarCancion(new cancion("90210 (feat. Kacy Hill)", "5:39", rapGenero, "Travis Scott, Kacy Hill"));
         rapPlaylist.agregarCancion(new cancion("The Hillbillies", "3:25", rapGenero, "Baby Keem, Kendrick Lamar"));
         listaPlaylists.add(rapPlaylist);
+        
+        generoMusical rockGenero = new generoMusical("Rock");
+        generos.add(rockGenero);
+        generoMusical popGenero = new generoMusical("Pop");
+        generos.add(popGenero);
+        generoMusical reguetonGenero = new generoMusical("Reggaeton");
+        generos.add(reguetonGenero);
 
         char opcion;
         do{
@@ -37,10 +47,10 @@ public class aplicacion {
             opcion = entrada.readLine().charAt(0);
                 switch (opcion){
                     case ('A')-> {
-                        ejecutar.agregarPlaylist();
+                        ejecutar.agregarPlaylist(generos);
                     }
                     case ('a')-> {
-                        ejecutar.agregarPlaylist();
+                        ejecutar.agregarPlaylist(generos);
                     }
                     case('B')-> {
                         ejecutar.reproducirPlaylist(listaPlaylists);
