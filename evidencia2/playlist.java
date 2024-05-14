@@ -40,6 +40,7 @@ public class playlist {
         cancion cancion = new cancion();
 
         for(int i = 0; i < numeroCanciones; i++){
+            System.out.println("Cancion numero " + (i + 1));
             System.out.println("Escribe el nombre de tu cancion: ");
             cancion.setNombreCancion(entrada.readLine());
             System.out.println("Escribe la duracion de la cancion: ");
@@ -48,9 +49,14 @@ public class playlist {
             cancion.setGeneroMusical(new generoMusical(entrada.readLine()));
             System.out.println("Escribe el nombre del cantante (o los cantantes): ");
             cancion.setNombreCantante(entrada.readLine());
+            System.out.println("Escribe el nombre de los autores: ");
+            ArrayList<String> x = new ArrayList<String>();
+            
         }
         listaCanciones.add(cancion);
         numeroCanciones = listaCanciones.size();
+        //TODO: CREAR UN CATALOGO DE GENEROS MUSICALES
+
     } 
 
     public void agregarCancion(cancion cancion) throws IOException{
@@ -81,10 +87,30 @@ public class playlist {
         }
         System.out.println("Escribe el codigo de identificacion de la playlist: ");
         String codigoEscrito = entrada.readLine();
-        
-        
-
+        if (codigoEscrito == getClavePlaylist()){
+            System.out.println("Playlist actual: " + getNombrePlaylist());
+            System.out.println("Cantidad de canciones: " + getNumeroCanciones());
+            for (cancion cancionActual : listaCanciones) {
+                System.out.println("Nombre de la cancion: " + cancionActual.getNombreCancion());
+                System.out.println("Interprete(s): " + cancionActual.getNombreCantante());
+                System.out.println("Duracion: " + cancionActual.getDuracion());
+                if(cancionActual != null){
+                    System.out.println("Genero musical: " + cancionActual.getGeneroMusical().getNombreGeneroMusical());
+                }
+                System.out.println("Autores: " + String.join("," , cancionActual.getAutores()));
+                System.out.println("---------------------------------------");
+            }
+        }
     }
+
+    /*public static playlist buscarPlaylist(String playlistSeleccionada){
+        for (playlist playlist : listaPlaylists) {
+            if(playlist.getClavePlaylist().equals(playlistSeleccionada)){
+                return playlist;
+            }
+        }
+        return null;
+    }*/
 
     //mostrar el contenido de la playlist
     public int getNumeroCanciones() {

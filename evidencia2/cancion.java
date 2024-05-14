@@ -9,6 +9,14 @@ public class cancion {
     private String nombreCantante;
     private ArrayList<String> autores = new ArrayList<String>();
 
+    public ArrayList<String> getAutores() {
+        return autores;
+    }
+
+    public void setAutores(ArrayList<String> autores) {
+        this.autores = autores;
+    }
+
     public cancion(String nombreCancion, String duracion, generoMusical generoMusical, String nombreCantante) {
         this.nombreCancion = nombreCancion;
         this.duracion = duracion;

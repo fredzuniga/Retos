@@ -8,9 +8,6 @@ import java.util.ArrayList;
 public class aplicacion {
     public static BufferedReader entrada = new BufferedReader(new InputStreamReader(System.in));
     public static void main(String[] args) throws IOException {
-        System.out.println("-----SPOTIFY FOR JAVA-----");
-        System.out.println("Elige una opcion para entrar: \nA. Agregar playlist \nB. Reproducir musica \nC. Terminar aplicacion");
-        char opcion = entrada.readLine().charAt(0);
         playlist ejecutar = new playlist();
         ArrayList<playlist> listaPlaylists = new ArrayList<playlist>();
 
@@ -33,26 +30,30 @@ public class aplicacion {
         rapPlaylist.agregarCancion(new cancion("The Hillbillies", "3:25", rapGenero, "Baby Keem, Kendrick Lamar"));
         listaPlaylists.add(rapPlaylist);
 
-        while (opcion != 'C' || opcion != 'c'){
-            switch (opcion){
-                case ('A')-> {
-                    ejecutar.agregarPlaylist();
+        char opcion;
+        do{
+            System.out.println("-----SPOTIFY FOR JAVA-----");
+            System.out.println("Elige una opcion para entrar: \nA. Agregar playlist \nB. Reproducir musica \nC. Terminar aplicacion");
+            opcion = entrada.readLine().charAt(0);
+                switch (opcion){
+                    case ('A')-> {
+                        ejecutar.agregarPlaylist();
+                    }
+                    case ('a')-> {
+                        ejecutar.agregarPlaylist();
+                    }
+                    case('B')-> {
+                        ejecutar.reproducirPlaylist(listaPlaylists);
+                    }
+                    case('b')->{
+                        ejecutar.reproducirPlaylist(listaPlaylists);
+                    }
+                    default-> {
+                        System.out.println("Escribe una letra valida");
+                        break;
+                    }
                 }
-                case ('a')-> {
-                    ejecutar.agregarPlaylist();
-                }
-                case('B')-> {
-                    ejecutar.reproducirPlaylist(listaPlaylists);
-                }
-                case('b')->{
-                    ejecutar.reproducirPlaylist(listaPlaylists);
-                }
-                default-> {
-                    System.out.println("Escribe una letra valida");
-                    break;
-                }
-            }
-        }
+            } while (opcion != 'C' || opcion != 'c');
         System.out.println("-----GRACIAS POR USAR ESTE PROGRAMA!-----");
     }
 }
