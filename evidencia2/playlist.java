@@ -15,6 +15,8 @@ public class playlist {
     private String nombrePlaylist;
     private String clavePlaylist;
     private ArrayList<cancion> listaCanciones = new ArrayList<cancion>();
+    aplicacion x = new aplicacion();
+    
 
     public playlist(String nombrePlaylist){
         this.nombrePlaylist = nombrePlaylist;
@@ -34,12 +36,27 @@ public class playlist {
         System.out.println("La clave de tu playlist es: ");
         clavePlaylist = crearClave(nombrePlaylist);
         System.out.println(clavePlaylist);
-    }
 
-    public void agregarCancion(cancion cancion){
+        cancion cancion = new cancion();
+
+        for(int i = 0; i < numeroCanciones; i++){
+            System.out.println("Escribe el nombre de tu cancion: ");
+            cancion.setNombreCancion(entrada.readLine());
+            System.out.println("Escribe la duracion de la cancion: ");
+            cancion.setDuracion(entrada.readLine());
+            System.out.println("Escribe el genero musical de la cancion: ");
+            cancion.setGeneroMusical(new generoMusical(entrada.readLine()));
+            System.out.println("Escribe el nombre del cantante (o los cantantes): ");
+            cancion.setNombreCantante(entrada.readLine());
+        }
         listaCanciones.add(cancion);
         numeroCanciones = listaCanciones.size();
-    }   
+    } 
+
+    public void agregarCancion(cancion cancion) throws IOException{
+        listaCanciones.add(cancion);
+        numeroCanciones = listaCanciones.size();
+    }
     
     //tomar un string y devolver su clave con la primer letra de las palabras
     public static String crearClave(String nombrePlaylist){
@@ -56,9 +73,16 @@ public class playlist {
         return clave.toString().toUpperCase();  //devolver en mayusculas
     }
 
-    public void reproducirPlaylist() throws IOException{
+    public void reproducirPlaylist(ArrayList <playlist> listaPlaylists) throws IOException{
+        System.out.println("-----REPRODUCCION DE PLAYLIST-----");
+        System.out.println("Lista de playlist disponibles: ");
+        for (playlist playlists : listaPlaylists) {
+            System.out.println(playlists.getClavePlaylist() +": " + playlists.getNombrePlaylist());
+        }
         System.out.println("Escribe el codigo de identificacion de la playlist: ");
         String codigoEscrito = entrada.readLine();
+        
+        
 
     }
 
