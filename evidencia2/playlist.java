@@ -14,8 +14,8 @@ public class playlist {
     private Date fechaRegistro;
     private String nombrePlaylist;
     private String clavePlaylist;
-    private ArrayList<cancion> listaCanciones = new ArrayList<cancion>();
-    aplicacion x = new aplicacion();
+    public ArrayList<cancion> listaCanciones = new ArrayList<cancion>();
+    //aplicacion x = new aplicacion();
     
 
     public playlist(String nombrePlaylist){
@@ -26,9 +26,11 @@ public class playlist {
     //constructor vacio
     public playlist(){}
 
-    public void agregarPlaylist(ArrayList<generoMusical> generos) throws IOException{
+    public void agregarPlaylist(ArrayList<generoMusical> generos, ArrayList<playlist> listaPlaylists) throws IOException{
         System.out.println("Escribe el nombre de tu playlist: ");
         nombrePlaylist = entrada.readLine();
+        playlist playlistGenerada = new playlist(nombrePlaylist);   //nuevo objeto de playlist para meter en el arraylist
+
         System.out.println("Ahora escribe el numero de canciones que se van a agregar");
         numeroCanciones = Integer.parseInt(entrada.readLine());
         
@@ -36,6 +38,8 @@ public class playlist {
         System.out.println("La clave de tu playlist es: ");
         clavePlaylist = crearClave(nombrePlaylist);
         System.out.println(clavePlaylist + "\n");
+        
+        listaPlaylists.add(playlistGenerada);   //agregar la playlist a la lista
 
         System.out.println("-----AGREGAR CANCIONES-----");
         cancion cancion = new cancion();
@@ -97,32 +101,26 @@ public class playlist {
         for (playlist playlists : listaPlaylists) {
             System.out.println(playlists.getClavePlaylist() +": " + playlists.getNombrePlaylist());
         }
+
         System.out.println("Escribe el codigo de identificacion de la playlist: ");
         String codigoEscrito = entrada.readLine();
-        if (codigoEscrito == getClavePlaylist()){
-            System.out.println("Playlist actual: " + getNombrePlaylist());
-            System.out.println("Cantidad de canciones: " + getNumeroCanciones());
-            for (cancion cancionActual : listaCanciones) {
-                System.out.println("Nombre de la cancion: " + cancionActual.getNombreCancion());
-                System.out.println("Interprete(s): " + cancionActual.getNombreCantante());
-                System.out.println("Duracion: " + cancionActual.getDuracion());
-                if(cancionActual != null){
-                    System.out.println("Genero musical: " + cancionActual.getGeneroMusical().getNombreGeneroMusical());
+        for (playlist claves : listaPlaylists) {
+            if (codigoEscrito.equals(claves.getClavePlaylist())){
+                System.out.println("Playlist actual: " + claves.getNombrePlaylist());
+                System.out.println("Cantidad de canciones: " + claves.getNumeroCanciones());
+                for (cancion cancionActual : claves.listaCanciones) {
+                    System.out.println("-----REPRODUCCION-----\nNombre de la cancion: " + cancionActual.getNombreCancion());
+                    System.out.println("Interprete(s): " + cancionActual.getNombreCantante());
+                    System.out.println("Duracion: " + cancionActual.getDuracion());
+                    if(cancionActual != null){
+                        System.out.println("Genero musical: " + cancionActual.getGeneroMusical().getNombreGeneroMusical());
+                    }
+                    System.out.println("Autores: " + String.join("," , cancionActual.getAutores()));
+                    System.out.println("---------------------------------------");
                 }
-                System.out.println("Autores: " + String.join("," , cancionActual.getAutores()));
-                System.out.println("---------------------------------------");
             }
         }
     }
-
-    /*public static playlist buscarPlaylist(String playlistSeleccionada){
-        for (playlist playlist : listaPlaylists) {
-            if(playlist.getClavePlaylist().equals(playlistSeleccionada)){
-                return playlist;
-            }
-        }
-        return null;
-    }*/
 
     //mostrar el contenido de la playlist
     public int getNumeroCanciones() {

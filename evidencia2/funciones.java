@@ -10,7 +10,4 @@ public class funciones {
         }
         return clave.toUpperCase();
     }
-
-    //Agregar un catalogo de generos
-    
 }

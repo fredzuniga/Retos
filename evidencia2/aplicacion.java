@@ -16,7 +16,7 @@ public class aplicacion {
         playlist corridosTumbados = new playlist("Corridos Tumbados");
         generoMusical corridosTumbadosGenero = new generoMusical("Corridos Tumbados");
         generos.add(corridosTumbadosGenero);
-        corridosTumbados.agregarCancion(new cancion("El de la codeina", "2:09", corridosTumbadosGenero, "Natanael Cano"));
+        corridosTumbados.agregarCancion(new cancion("El de la codeina", "2:09", corridosTumbadosGenero, "Natanael Cano","Natanael Cano"));
         corridosTumbados.agregarCancion(new cancion("Y LLORO", "2:59", corridosTumbadosGenero, "Junior H"));
         corridosTumbados.agregarCancion(new cancion("LADY GAGA", "3:32", corridosTumbadosGenero, "Peso Pluma, Gabito Ballesteros, Junior H"));
         corridosTumbados.agregarCancion(new cancion("AMG", "2:54", corridosTumbadosGenero, "Natanael Cano, Peso Pluma, Gabito Ballesteros"));
@@ -33,37 +33,41 @@ public class aplicacion {
         rapPlaylist.agregarCancion(new cancion("The Hillbillies", "3:25", rapGenero, "Baby Keem, Kendrick Lamar"));
         listaPlaylists.add(rapPlaylist);
         
-        generoMusical rockGenero = new generoMusical("Rock");
-        generos.add(rockGenero);
         generoMusical popGenero = new generoMusical("Pop");
         generos.add(popGenero);
         generoMusical reguetonGenero = new generoMusical("Reggaeton");
         generos.add(reguetonGenero);
 
-        char opcion;
+        char opcion = ' ';
         do{
             System.out.println("-----SPOTIFY FOR JAVA-----");
             System.out.println("Elige una opcion para entrar: \nA. Agregar playlist \nB. Reproducir musica \nC. Terminar aplicacion");
             opcion = entrada.readLine().charAt(0);
+            //System.out.println(opcion);
                 switch (opcion){
-                    case ('A')-> {
-                        ejecutar.agregarPlaylist(generos);
+                    case 'A'-> {
+                        ejecutar.agregarPlaylist(generos, listaPlaylists);
                     }
-                    case ('a')-> {
-                        ejecutar.agregarPlaylist(generos);
+                    case 'a'-> {
+                        ejecutar.agregarPlaylist(generos, listaPlaylists);
                     }
-                    case('B')-> {
+                    case 'B'-> {
                         ejecutar.reproducirPlaylist(listaPlaylists);
                     }
-                    case('b')->{
+                    case 'b'-> {
                         ejecutar.reproducirPlaylist(listaPlaylists);
+                    }
+                    case 'C'-> {
+                        break;
+                    }
+                    case 'c'-> {
+                        break;
                     }
                     default-> {
                         System.out.println("Escribe una letra valida");
-                        break;
                     }
                 }
-            } while (opcion != 'C' || opcion != 'c');
+            } while ((opcion != 'C')&&(opcion != 'c'));
         System.out.println("-----GRACIAS POR USAR ESTE PROGRAMA!-----");
     }
 }

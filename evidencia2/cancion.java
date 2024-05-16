@@ -17,11 +17,12 @@ public class cancion {
         this.autores = autores;
     }
 
-    public cancion(String nombreCancion, String duracion, generoMusical generoMusical, String nombreCantante) {
+    public cancion(String nombreCancion, String duracion, generoMusical generoMusical, String nombreCantante, ArrayList<String> autores) {
         this.nombreCancion = nombreCancion;
         this.duracion = duracion;
         this.generoMusical = generoMusical;
         this.nombreCantante = nombreCantante;
+        this.autores = autores;
     }
 
     public cancion(){}
