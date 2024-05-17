@@ -57,6 +57,7 @@ public class playlist {
             for(int k = 0; k < generos.size(); k++){
                 if(generos.get(k).getClaveGeneroMusical() == claveEscrita){
                     cancion.setGeneroMusical(generos.get(k));
+                    break;
                 }
             }
             System.out.println("Escribe el nombre del cantante (o los cantantes): ");
